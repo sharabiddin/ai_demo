@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-gray-200;
+  }
+  body {
+    @apply bg-dark-bg text-white;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+}
+
+@layer components {
+  .glass-effect {
+    @apply backdrop-blur-md bg-glass border border-gray-500/30 rounded-lg;
+  }
+  
+  .cyber-glow {
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+  }
+  
+  .text-cyber {
+    @apply bg-gradient-to-r from-cyber-blue to-cyber-purple bg-clip-text text-transparent;
+  }
+}
+
+.scanning-line {
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #00ffff, transparent);
+  animation: scan 3s ease-in-out infinite;
+}
