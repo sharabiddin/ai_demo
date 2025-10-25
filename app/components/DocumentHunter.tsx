@@ -262,7 +262,7 @@ export default function DocumentHunter({ isActive, command }: DocumentHunterProp
       
       <div className="mb-4">
         <div className="flex justify-between text-sm mb-2">
-          <span>Scanning emails...</span>
+          <span>Email-lər taranır...</span>
           <span>{workflowState.emailsScanned.toLocaleString()} / {workflowState.totalEmails.toLocaleString()}</span>
         </div>
         <div className="w-full bg-gray-700 rounded-full h-2">
@@ -277,7 +277,7 @@ export default function DocumentHunter({ isActive, command }: DocumentHunterProp
 
       {scanningEmails.length > 0 && (
         <div className="space-y-2">
-          <div className="text-sm font-medium text-gray-300 mb-2">Currently scanning:</div>
+          <div className="text-sm font-medium text-gray-300 mb-2">Hazırda taranır:</div>
           {scanningEmails.map((email, index) => (
             <motion.div
               key={`${email.id}-${index}`}
@@ -289,7 +289,7 @@ export default function DocumentHunter({ isActive, command }: DocumentHunterProp
               <div className="flex items-center justify-between">
                 <div className="flex-1">
                   <div className="text-sm font-medium truncate">{email.subject}</div>
-                  <div className="text-xs text-gray-400">From: {email.from}</div>
+                  <div className="text-xs text-gray-400">Göndərən: {email.from}</div>
                 </div>
                 {email.isRelevant && (
                   <div className="ml-2 text-green-400">
@@ -332,7 +332,7 @@ export default function DocumentHunter({ isActive, command }: DocumentHunterProp
             <div className="flex items-start justify-between mb-3">
               <div className="flex-1">
                 <div className="font-medium">{email.subject}</div>
-                <div className="text-sm text-gray-400">From: {email.from} • {email.date}</div>
+                <div className="text-sm text-gray-400">Göndərən: {email.from} • {email.date}</div>
               </div>
               <div className="text-green-400">
                 <Eye className="w-5 h-5" />

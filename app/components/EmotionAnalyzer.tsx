@@ -181,13 +181,13 @@ export default function EmotionAnalyzer({ isActive, command }: EmotionAnalyzerPr
         riskAlerts: [
           'Elnur Həsənov yüksək frustrasiya səviyyəsi göstərir',
           'Leyla Məmmədova stress göstəriciləri yaşayır',
-          'Timeline pressure affecting team morale'
+          'Vaxt cədvəli təzyiqi komanda moralina təsir edir'
         ],
         recommendations: [
-          'Schedule 1:1 with Mike to address concerns',
-          'Review project timeline and redistribute workload',
-          'Implement stress reduction techniques for team',
-          'Increase recognition for high-performing members'
+          'Narahatlıqları həll etmək üçün Mike ilə 1:1 görüş planlaşdırın',
+          'Layihə vaxt cədvəlini nəzərdən keçirin və iş yükünü yenidən bölün',
+          'Komanda üçün stress azaltma texnikalarını tətbiq edin',
+          'Yüksək performanslı üzvlər üçün tanınmanı artırın'
         ]
       }
     }));
@@ -395,13 +395,13 @@ export default function EmotionAnalyzer({ isActive, command }: EmotionAnalyzerPr
     >
       <div className="flex items-center mb-4">
         <Target className="w-6 h-6 text-green-400 mr-2" />
-        <h3 className="text-xl font-bold text-cyber">AI Insights & Recommendations</h3>
+        <h3 className="text-xl font-bold text-cyber">AI Nəticələr və Tövsiyələr</h3>
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
         <div className="text-center p-4 bg-green-400/10 rounded-lg border border-green-400/30">
           <div className="text-2xl font-bold text-green-400">{workflowState.insights.overallMood}</div>
-          <div className="text-sm text-gray-400">Komanda Ovqatı</div>
+          <div className="text-sm text-gray-400">Komanda Əhval-Ruhiyyəsi</div>
         </div>
         <div className="text-center p-4 bg-red-400/10 rounded-lg border border-red-400/30">
           <div className="text-2xl font-bold text-red-400">{workflowState.insights.stressLevel}%</div>
@@ -438,7 +438,7 @@ export default function EmotionAnalyzer({ isActive, command }: EmotionAnalyzerPr
         <div className="bg-green-400/10 border border-green-400/30 rounded-lg p-4">
           <h4 className="font-semibold text-green-400 mb-3 flex items-center">
             <Heart className="w-5 h-5 mr-2" />
-            Recommendations
+            Tövsiyələr
           </h4>
           <ul className="text-sm space-y-2">
             {workflowState.insights.recommendations.map((rec, index) => (
@@ -461,7 +461,7 @@ export default function EmotionAnalyzer({ isActive, command }: EmotionAnalyzerPr
 
   const renderStepIndicator = () => (
     <div className="backdrop-blur-md bg-gray-800/60 p-4 h-full rounded-xl border border-gray-600/30">
-      <h4 className="font-semibold mb-3 text-cyber">Emotion AI Process</h4>
+      <h4 className="font-semibold mb-3 text-cyber">Emosiya AI Prosesi</h4>
       <div className="space-y-3">
         {steps.map((step, index) => (
           <motion.div

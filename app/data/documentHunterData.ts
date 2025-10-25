@@ -66,7 +66,7 @@ export const mockEmails: Email[] = [
         size: '180 KB'
       }
     ],
-    body: 'Here are the updated contract templates for 2023...'
+    body: 'Budədə 2023 üçün yenilanmiş müqavilə şablonları...'
   },
   {
     id: '3',
@@ -82,11 +82,11 @@ export const mockEmails: Email[] = [
         type: 'application/pdf',
         size: '248 KB',
         isDocument: true,
-        extractedText: 'EMPLOYMENT AGREEMENT - SIGNED\n\nEmployee: John Smith\nPosition: Senior Developer\nEmployee Signature: [SIGNED]\nDate: March 16, 2023',
+        extractedText: 'ƏMƏK MÜQAVİLƏSİ - İMZALANMIŞ\n\nİşçi: John Smith\nVəzifə: Senior Developer\nİşçi İmzası: [İMZALANMIŞ]\nTarix: 16 Mart 2023',
         relevanceScore: 95
       }
     ],
-    body: 'Hi, I have reviewed and signed the contract. Please find attached...',
+    body: 'Salam, müqaviləni nəzərdən keçirdim və imzaladım. Zəhmət olmasa əlavəyə baxın...',
     isRelevant: true
   },
   {
@@ -96,7 +96,7 @@ export const mockEmails: Email[] = [
     subject: 'Payroll Setup Complete',
     date: '2023-03-18',
     hasAttachment: false,
-    body: 'John Smith has been added to payroll system...'
+    body: 'John Smith əməkhaqqı sistemə əlavə edildi...'
   },
   {
     id: '5',
@@ -105,7 +105,7 @@ export const mockEmails: Email[] = [
     subject: 'Team Meeting Schedule',
     date: '2023-03-20',
     hasAttachment: false,
-    body: 'Welcome to the team! Our weekly meetings are...'
+    body: 'Komandaya xoş gəlmisiniz! Həftəlik görüşlərimiz...'
   }
 ];
 

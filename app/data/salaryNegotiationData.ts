@@ -89,7 +89,7 @@ export const mockMarketData: MarketData[] = [
     salaryRange: { min: 110000, max: 140000, median: 125000 },
     location: 'San Francisco, CA',
     company: 'TechCorp',
-    experience: '4-6 years',
+    experience: '4-6 il',
     timestamp: '2023-10-20T10:30:00Z'
   },
   {
@@ -99,7 +99,7 @@ export const mockMarketData: MarketData[] = [
     salaryRange: { min: 115000, max: 145000, median: 130000 },
     location: 'San Francisco, CA',
     company: 'Meta',
-    experience: '5+ years',
+    experience: '5+ il',
     timestamp: '2023-10-20T10:31:00Z'
   },
   {
@@ -109,7 +109,7 @@ export const mockMarketData: MarketData[] = [
     salaryRange: { min: 105000, max: 135000, median: 120000 },
     location: 'San Francisco, CA',
     company: 'Google',
-    experience: '4-7 years',
+    experience: '4-7 il',
     timestamp: '2023-10-20T10:32:00Z'
   }
 ];
@@ -121,7 +121,7 @@ export const competitorOffers: CompetitorOffer[] = [
     role: 'Senior Frontend Engineer',
     salary: 135000,
     benefits: ['Sağlamlıq sığortası', 'Stomatoloji', 'Pensiya fond töhfəsi', 'Səhm opsiyaları'],
-    equity: '0.15% vesting over 4 years',
+    equity: '0.15% 4 il çərkəyində',
     location: 'San Francisco, CA',
     likelihood: 78
   },
@@ -131,7 +131,7 @@ export const competitorOffers: CompetitorOffer[] = [
     role: 'Software Engineer III',
     salary: 142000,
     benefits: ['Sağlamlıq sığortası', 'Stomatoloji', 'Pensiya fondu', 'Pulsuz yeməklər', 'Səhmlər'],
-    equity: '0.12% RSUs over 4 years',
+    equity: '0.12% RSU 4 il ü zərində',
     location: 'Mountain View, CA',
     likelihood: 85
   },
@@ -141,7 +141,7 @@ export const competitorOffers: CompetitorOffer[] = [
     role: 'Senior Frontend Developer',
     salary: 128000,
     benefits: ['Sağlamlıq sığortası', 'Stomatoloji', 'Pensiya fondu', 'Limitsiz məzuniyyət'],
-    equity: '0.18% options over 4 years',
+    equity: '0.18% opsiyalar 4 il ü zərində',
     location: 'San Francisco, CA',
     likelihood: 92
   }

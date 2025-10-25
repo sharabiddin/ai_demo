@@ -228,8 +228,8 @@ export default function SalaryNegotiationOracle({ isActive, command }: SalaryNeg
               <div className="text-2xl font-bold text-gray-100">
                 ${workflowState.employee.currentSalary.toLocaleString()}
               </div>
-              <div className="text-sm text-gray-400">Cari Maaş</div>
-              <div className="text-xs text-red-400 mt-1">Last raise: {workflowState.employee.lastRaise}</div>
+              <div className="text-sm text-gray-400">Hazırkı Maaş</div>
+              <div className="text-xs text-red-400 mt-1">Son artım: {workflowState.employee.lastRaise}</div>
             </div>
           </div>
 
@@ -237,17 +237,17 @@ export default function SalaryNegotiationOracle({ isActive, command }: SalaryNeg
             <div className="p-3 bg-black/30 rounded-lg text-center">
               <Trophy className="w-5 h-5 text-yellow-400 mx-auto mb-1" />
               <div className="text-lg font-bold text-yellow-400">{workflowState.employee.performance}%</div>
-              <div className="text-xs text-gray-400">Performance</div>
+              <div className="text-xs text-gray-400">Performans</div>
             </div>
             <div className="p-3 bg-black/30 rounded-lg text-center">
               <Building className="w-5 h-5 text-blue-400 mx-auto mb-1" />
               <div className="text-lg font-bold text-blue-400">{workflowState.employee.experience}</div>
-              <div className="text-xs text-gray-400">Years</div>
+              <div className="text-xs text-gray-400">İl</div>
             </div>
             <div className="p-3 bg-black/30 rounded-lg text-center">
               <Zap className="w-5 h-5 text-purple-400 mx-auto mb-1" />
               <div className="text-lg font-bold text-purple-400">{workflowState.employee.skills.length}</div>
-              <div className="text-xs text-gray-400">Skills</div>
+              <div className="text-xs text-gray-400">Bacarıqlar</div>
             </div>
             <div className="p-3 bg-black/30 rounded-lg text-center">
               <TrendingUp className="w-5 h-5 text-green-400 mx-auto mb-1" />
@@ -349,7 +349,7 @@ export default function SalaryNegotiationOracle({ isActive, command }: SalaryNeg
                   <div className="w-2 h-2 bg-green-400 rounded-full mr-3 animate-pulse" />
                   <div>
                     <div className="font-medium text-gray-100">{data.source}</div>
-                    <div className="text-sm text-gray-400">{data.company} • {data.experience}</div>
+                    <div className="text-sm text-gray-400">{data.company} • {data.experience} təcrübə</div>
                   </div>
                 </div>
                 <div className="text-right">
@@ -411,7 +411,7 @@ export default function SalaryNegotiationOracle({ isActive, command }: SalaryNeg
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 <div>
-                  <div className="text-sm text-gray-400 mb-1">Sosial Paket:</div>
+                  <div className="text-sm text-gray-400 mb-1">Sosial Paket</div>
                   <div className="flex flex-wrap gap-1">
                     {offer.benefits.map((benefit, bIndex) => (
                       <span key={bIndex} className="px-2 py-1 bg-gray-700/50 text-xs rounded">
@@ -421,7 +421,7 @@ export default function SalaryNegotiationOracle({ isActive, command }: SalaryNeg
                   </div>
                 </div>
                 <div>
-                  <div className="text-sm text-gray-400 mb-1">Equity:</div>
+                  <div className="text-sm text-gray-400 mb-1">Səhm</div>
                   <div className="text-sm text-gray-200">{offer.equity}</div>
                 </div>
               </div>
@@ -520,7 +520,7 @@ export default function SalaryNegotiationOracle({ isActive, command }: SalaryNeg
             </h4>
             <div className="space-y-3">
               <div className="flex items-center justify-between">
-                <span className="text-gray-300">Strategy:</span>
+                <span className="text-gray-300">Strategiya:</span>
                 <span className="text-blue-400 font-medium">{workflowState.prediction.strategy}</span>
               </div>
               <div className="flex items-center justify-between">

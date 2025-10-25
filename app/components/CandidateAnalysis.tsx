@@ -91,7 +91,7 @@ export default function CandidateAnalysis({ isActive, command }: CandidateAnalys
           analysisResult: {
             score: 92,
             strengths: ['Güclü React ekspertizası', 'Rəhbərlik təcrübəsi', 'AWS sertifikatlı'],
-            weaknesses: ['Limited backend experience', 'No mobile development'],
+            weaknesses: ['Məhdud backend təcrübəsi', 'Mobil proqramlaşdırma yoxdur'],
             recommendation: 'Senior Frontend Developer vəzifəsi üçün mükəmməl uyğunluq'
           }
         }));
@@ -184,7 +184,7 @@ export default function CandidateAnalysis({ isActive, command }: CandidateAnalys
       >
         <div className="flex items-center mb-4">
           <FileText className="w-6 h-6 text-cyber-purple mr-2" />
-          <h3 className="text-xl font-bold text-cyber">CV Analysis</h3>
+          <h3 className="text-xl font-bold text-cyber">CV Analizi</h3>
           {workflowState.currentStep === 2 && (
             <div className="ml-auto">
               <div className="scanning-line"></div>
@@ -239,7 +239,7 @@ export default function CandidateAnalysis({ isActive, command }: CandidateAnalys
           </div>
           
           <div>
-            <h4 className="font-semibold text-green-400 mb-2">Strengths</h4>
+            <h4 className="font-semibold text-green-400 mb-2">Güclü Tərəflər</h4>
             <ul className="text-sm space-y-1">
               {workflowState.analysisResult.strengths.map((strength, index) => (
                 <motion.li
@@ -257,7 +257,7 @@ export default function CandidateAnalysis({ isActive, command }: CandidateAnalys
           </div>
           
           <div>
-            <h4 className="font-semibold text-yellow-400 mb-2">Areas for Growth</h4>
+            <h4 className="font-semibold text-yellow-400 mb-2">İnkişaf Sahələri</h4>
             <ul className="text-sm space-y-1">
               {workflowState.analysisResult.weaknesses.map((weakness, index) => (
                 <motion.li
@@ -276,7 +276,7 @@ export default function CandidateAnalysis({ isActive, command }: CandidateAnalys
         </div>
         
         <div className="mt-6 p-4 bg-cyber-blue/10 rounded-lg border border-cyber-blue">
-          <h4 className="font-semibold text-cyber-blue mb-2">AI Recommendation</h4>
+          <h4 className="font-semibold text-cyber-blue mb-2">AI Tövsiyəsi</h4>
           <p className="text-sm">{workflowState.analysisResult.recommendation}</p>
         </div>
       </motion.div>
@@ -285,7 +285,7 @@ export default function CandidateAnalysis({ isActive, command }: CandidateAnalys
 
   const renderStepIndicator = () => (
     <div className="glass-effect p-4 h-full">
-      <h4 className="font-semibold mb-3 text-cyber">AI Process</h4>
+      <h4 className="font-semibold mb-3 text-cyber">AI Prosesi</h4>
       <div className="space-y-3">
         {steps.map((step, index) => (
           <motion.div

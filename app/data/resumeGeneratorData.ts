@@ -320,12 +320,12 @@ export const resumeGeneratorSteps: ResumeGeneratorStep[] = [
 ];
 
 export const linkedInScrapeSteps = [
-  'Authenticating with LinkedIn API...',
-  'Accessing user profile data...',
-  'Extracting work experience...',
-  'Parsing education details...',
-  'Collecting skills and endorsements...',
-  'Analyzing achievements and metrics...',
-  'Gathering recommendations...',
-  'Processing certifications...'
+  'LinkedIn API ilə autentifikasiya...',
+  'İstifadəçi profil məlumatlarına giriş...',
+  'İş təcrübəsinin çıxarılması...',
+  'Təhsil məlumatlarının təhlili...',
+  'Bacarıqlar və təsdiqatın toplanması...',
+  'Nailiyyətlər və göstəricilərin analizi...',
+  'Tövsiyələrin toplanması...',
+  'Sertifikatların emalı...'
 ];

@@ -194,8 +194,8 @@ export default function ResumeGenerator({ isActive, command }: ResumeGeneratorPr
               <Linkedin className="w-6 h-6 text-blue-500" />
             </div>
             <div>
-              <div className="font-semibold text-gray-100">LinkedIn API Connection</div>
-              <div className="text-sm text-gray-400">Secure OAuth 2.0 Authentication</div>
+              <div className="font-semibold text-gray-100">LinkedIn API Qoşulması</div>
+              <div className="text-sm text-gray-400">Təhlükəsiz OAuth 2.0 Autentifikasiya</div>
             </div>
           </div>
           {workflowState.linkedInProfile && (
@@ -206,7 +206,7 @@ export default function ResumeGenerator({ isActive, command }: ResumeGeneratorPr
         {workflowState.linkedInProfile && (
           <div className="mt-4 p-3 bg-green-400/10 border border-green-400/30 rounded">
             <div className="text-sm text-green-400 font-medium">✓ Elvin Quliyev-in profilinə uğurla qoşuldu</div>
-            <div className="text-xs text-gray-400 mt-1">Profile access granted • Data extraction authorized</div>
+            <div className="text-xs text-gray-400 mt-1">Profilə giriş verildi • Məlumat çıxarılması icazəli</div>
           </div>
         )}
       </div>
@@ -243,8 +243,8 @@ export default function ResumeGenerator({ isActive, command }: ResumeGeneratorPr
               <p className="text-sm text-gray-300">{workflowState.linkedInProfile.headline}</p>
               <p className="text-xs text-gray-400">{workflowState.linkedInProfile.location}</p>
               <div className="flex gap-4 mt-2 text-xs text-gray-500">
-                <span>{workflowState.linkedInProfile.connections} connections</span>
-                <span>{workflowState.linkedInProfile.profileViews} profile views</span>
+                <span>{workflowState.linkedInProfile.connections} əlaqə</span>
+                <span>{workflowState.linkedInProfile.profileViews} profil baxışı</span>
               </div>
             </div>
           </div>
@@ -253,28 +253,28 @@ export default function ResumeGenerator({ isActive, command }: ResumeGeneratorPr
             <div className="p-4 bg-black/30 rounded-lg">
               <div className="flex items-center mb-2">
                 <Briefcase className="w-5 h-5 text-cyber-blue mr-2" />
-                <span className="font-medium text-gray-100">Experience</span>
+                <span className="font-medium text-gray-100">Təcrübə</span>
               </div>
               <div className="text-2xl font-bold text-cyber-blue">{workflowState.linkedInProfile.experience.length}</div>
-              <div className="text-xs text-gray-400">positions</div>
+              <div className="text-xs text-gray-400">vəzifə</div>
             </div>
             
             <div className="p-4 bg-black/30 rounded-lg">
               <div className="flex items-center mb-2">
                 <GraduationCap className="w-5 h-5 text-green-400 mr-2" />
-                <span className="font-medium text-gray-100">Education</span>
+                <span className="font-medium text-gray-100">Təhsil</span>
               </div>
               <div className="text-2xl font-bold text-green-400">{workflowState.linkedInProfile.education.length}</div>
-              <div className="text-xs text-gray-400">degrees</div>
+              <div className="text-xs text-gray-400">dərəcə</div>
             </div>
             
             <div className="p-4 bg-black/30 rounded-lg">
               <div className="flex items-center mb-2">
                 <Award className="w-5 h-5 text-yellow-400 mr-2" />
-                <span className="font-medium text-gray-100">Skills</span>
+                <span className="font-medium text-gray-100">Bacarıqlar</span>
               </div>
               <div className="text-2xl font-bold text-yellow-400">{workflowState.linkedInProfile.skills.length}</div>
-              <div className="text-xs text-gray-400">technical skills</div>
+              <div className="text-xs text-gray-400">texniki bacarıq</div>
             </div>
           </div>
 
@@ -350,19 +350,19 @@ export default function ResumeGenerator({ isActive, command }: ResumeGeneratorPr
           <div className="space-y-3">
             <div className="flex items-center">
               <TrendingUp className="w-4 h-4 text-green-400 mr-2" />
-              <span className="text-sm text-gray-300">Analyzing achievements for quantifiable metrics</span>
+              <span className="text-sm text-gray-300">Ölçülə bilən göstəricilər üçün nailiyyətlər analiz edilir</span>
             </div>
             <div className="flex items-center">
               <Target className="w-4 h-4 text-blue-400 mr-2" />
-              <span className="text-sm text-gray-300">Optimizing keywords for ATS compatibility</span>
+              <span className="text-sm text-gray-300">ATS uyğunluğu üçün açar sözlər optimallaşdırılır</span>
             </div>
             <div className="flex items-center">
               <Star className="w-4 h-4 text-yellow-400 mr-2" />
-              <span className="text-sm text-gray-300">Highlighting technical leadership experience</span>
+              <span className="text-sm text-gray-300">Texniki rəhbərlik təcrübəsi vurğulanır</span>
             </div>
             <div className="flex items-center">
               <Zap className="w-4 h-4 text-cyber-purple mr-2" />
-              <span className="text-sm text-gray-300">Crafting compelling professional summary</span>
+              <span className="text-sm text-gray-300">Təsirli peşəkar xülasə hazırlanır</span>
             </div>
           </div>
         </div>
@@ -418,7 +418,7 @@ export default function ResumeGenerator({ isActive, command }: ResumeGeneratorPr
                   </div>
                   <div>
                     <h4 className="font-semibold text-gray-100">Texniki Fokuslu CV</h4>
-                    <div className="text-sm text-gray-400">Tailored for {resume.tailoredFor}</div>
+                    <div className="text-sm text-gray-400">{resume.tailoredFor} üçün</div>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
@@ -462,12 +462,12 @@ export default function ResumeGenerator({ isActive, command }: ResumeGeneratorPr
           ))}
 
           <div className="bg-green-400/10 border border-green-400/30 rounded-lg p-4">
-            <h4 className="font-semibold text-green-400 mb-3">🎯 AI Recommendations</h4>
+            <h4 className="font-semibold text-green-400 mb-3">🎯 AI Tövsiyələri</h4>
             <div className="text-sm space-y-2">
-              <p>✅ <strong>Resume optimized</strong> for technical leadership roles</p>
-              <p>✅ <strong>94% ATS compatibility</strong> with major recruiting platforms</p>
-              <p>✅ <strong>Quantified achievements</strong> highlighting 40% performance improvements</p>
-              <p>✅ <strong>Keywords optimized</strong> for React, TypeScript, and leadership terms</p>
+              <p>✅ <strong>CV optimallaşdırıldı</strong> texniki rəhbərlik vəzifələri üçün</p>
+              <p>✅ <strong>94% ATS uyğunluğu</strong> əsas işəgötürmə platformaları ilə</p>
+              <p>✅ <strong>Ölçülmüş nailiyyətlər</strong> 40% performans təkmilləşdirmələri vurğulanır</p>
+              <p>✅ <strong>Açar sözlər optimallaşdırıldı</strong> React, TypeScript və rəhbərlik terminləri üçün</p>
             </div>
           </div>
         </div>
@@ -477,7 +477,7 @@ export default function ResumeGenerator({ isActive, command }: ResumeGeneratorPr
 
   const renderStepIndicator = () => (
     <div className="backdrop-blur-md bg-gray-800/60 p-4 h-full rounded-xl border border-gray-600/30">
-      <h4 className="font-semibold mb-3 text-cyber">Resume AI Process</h4>
+      <h4 className="font-semibold mb-3 text-cyber">CV AI Prosesi</h4>
       <div className="space-y-3">
         {steps.map((step, index) => (
           <motion.div
