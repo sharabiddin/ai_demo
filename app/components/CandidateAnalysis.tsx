@@ -123,15 +123,15 @@ export default function CandidateAnalysis({ isActive, command }: CandidateAnalys
       ref={candidateListRef}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className={`glass-effect p-6 mb-6 transition-all duration-500 ${
+      className={`glass-card p-6 mb-6 transition-all duration-500 shadow-soft hover:shadow-medium ${
         workflowState.currentStep === 0 || workflowState.currentStep === 1 
-          ? 'ring-2 ring-cyber-blue/50 bg-cyber-blue/5' 
+          ? 'border-2 border-primary-300 shadow-glow-blue bg-primary-50' 
           : ''
       }`}
     >
       <div className="flex items-center mb-4">
-        <User className="w-6 h-6 text-cyber-blue mr-2" />
-        <h3 className="text-xl font-bold text-cyber">Namizəd Fondu</h3>
+        <User className="w-6 h-6 text-primary-600 mr-2" />
+        <h3 className="text-xl font-bold text-gray-900">Namizəd Fondu</h3>
       </div>
       <div className="space-y-3">
         {workflowState.candidates.map((candidate, index) => (
@@ -140,23 +140,23 @@ export default function CandidateAnalysis({ isActive, command }: CandidateAnalys
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: index * 0.2 }}
-            className={`p-4 rounded-lg border transition-all duration-300 ${
+            className={`p-4 rounded-lg border transition-all duration-300 shadow-soft hover:shadow-medium ${
               workflowState.selectedCandidate?.id === candidate.id
-                ? 'border-cyber-blue bg-cyber-blue/10 cyber-glow'
-                : 'border-gray-600/50 hover:border-gray-500/60'
+                ? 'border-primary-300 bg-primary-50 shadow-glow-blue'
+                : 'border-gray-200 hover:border-gray-300'
             }`}
           >
             <div className="flex justify-between items-center">
               <div>
-                <h4 className="font-semibold">{candidate.name}</h4>
-                <p className="text-gray-400 text-sm">{candidate.position}</p>
-                <p className="text-gray-500 text-xs">{candidate.experience}</p>
+                <h4 className="font-semibold text-gray-900">{candidate.name}</h4>
+                <p className="text-gray-500 text-sm">{candidate.position}</p>
+                <p className="text-gray-400 text-xs">{candidate.experience}</p>
               </div>
               {workflowState.selectedCandidate?.id === candidate.id && (
                 <motion.div
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
-                  className="text-cyber-blue"
+                  className="text-primary-600"
                 >
                   <CheckCircle className="w-6 h-6" />
                 </motion.div>
@@ -176,31 +176,31 @@ export default function CandidateAnalysis({ isActive, command }: CandidateAnalys
         ref={cvAnalysisRef}
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
-        className={`glass-effect p-6 mb-6 transition-all duration-500 ${
+        className={`glass-card p-6 mb-6 transition-all duration-500 shadow-soft hover:shadow-medium ${
           workflowState.currentStep === 2 || workflowState.currentStep === 3
-            ? 'ring-2 ring-cyber-purple/50 bg-cyber-purple/5'
+            ? 'border-2 border-accent-300 shadow-glow-purple bg-accent-50'
             : ''
         }`}
       >
         <div className="flex items-center mb-4">
-          <FileText className="w-6 h-6 text-cyber-purple mr-2" />
-          <h3 className="text-xl font-bold text-cyber">CV Analizi</h3>
+          <FileText className="w-6 h-6 text-accent-600 mr-2" />
+          <h3 className="text-xl font-bold text-gray-900">CV Analizi</h3>
           {workflowState.currentStep === 2 && (
             <div className="ml-auto">
               <div className="scanning-line"></div>
-              <Brain className="w-6 h-6 text-cyber-blue animate-pulse" />
+              <Brain className="w-6 h-6 text-primary-600 animate-pulse" />
             </div>
           )}
         </div>
         
-        <div className="bg-black/50 p-4 rounded-lg font-mono text-sm whitespace-pre-wrap">
+        <div className="bg-white/90 border border-gray-100 p-4 rounded-lg font-mono text-sm whitespace-pre-wrap">
           {workflowState.selectedCandidate.cv.split(' ').map((word, index) => (
             <span
               key={index}
               className={`${
                 highlightedText.includes(word.replace(/[^\w]/g, ''))
-                  ? 'bg-cyber-blue/30 text-cyber-blue animate-text-highlight'
-                  : ''
+                  ? 'bg-primary-50 text-primary-600 animate-text-highlight'
+                  : 'text-gray-900'
               }`}
             >
               {word}{' '}
@@ -219,27 +219,27 @@ export default function CandidateAnalysis({ isActive, command }: CandidateAnalys
         ref={analysisResultRef}
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className={`glass-effect p-6 transition-all duration-500 ${
+        className={`glass-card p-6 transition-all duration-500 shadow-soft hover:shadow-medium ${
           workflowState.currentStep === 4
-            ? 'ring-2 ring-cyber-pink/50 bg-cyber-pink/5'
+            ? 'border-2 border-accent-400 shadow-glow-purple bg-accent-50'
             : ''
         }`}
       >
         <div className="flex items-center mb-4">
-          <Zap className="w-6 h-6 text-cyber-pink mr-2" />
-          <h3 className="text-xl font-bold text-cyber">Analiz Nəticələri</h3>
+          <Zap className="w-6 h-6 text-accent-500 mr-2" />
+          <h3 className="text-xl font-bold text-gray-900">Analiz Nəticələri</h3>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="text-center">
-            <div className="text-3xl font-bold text-cyber-blue mb-2">
+            <div className="text-3xl font-bold text-primary-600 mb-2">
               {workflowState.analysisResult.score}%
             </div>
-            <div className="text-gray-400">Uyğunluq Balı</div>
+            <div className="text-gray-500">Uyğunluq Balı</div>
           </div>
           
           <div>
-            <h4 className="font-semibold text-green-400 mb-2">Güclü Tərəflər</h4>
+            <h4 className="font-semibold text-success-600 mb-2">Güclü Tərəflər</h4>
             <ul className="text-sm space-y-1">
               {workflowState.analysisResult.strengths.map((strength, index) => (
                 <motion.li
@@ -249,8 +249,8 @@ export default function CandidateAnalysis({ isActive, command }: CandidateAnalys
                   transition={{ delay: index * 0.1 }}
                   className="flex items-center"
                 >
-                  <CheckCircle className="w-4 h-4 text-green-400 mr-2" />
-                  {strength}
+                  <CheckCircle className="w-4 h-4 text-success-600 mr-2" />
+                  <span className="text-gray-700">{strength}</span>
                 </motion.li>
               ))}
             </ul>
@@ -275,17 +275,17 @@ export default function CandidateAnalysis({ isActive, command }: CandidateAnalys
           </div>
         </div>
         
-        <div className="mt-6 p-4 bg-cyber-blue/10 rounded-lg border border-cyber-blue">
-          <h4 className="font-semibold text-cyber-blue mb-2">AI Tövsiyəsi</h4>
-          <p className="text-sm">{workflowState.analysisResult.recommendation}</p>
+        <div className="mt-6 p-4 bg-primary-50 rounded-lg border border-primary-300">
+          <h4 className="font-semibold text-primary-600 mb-2">AI Tövsiyəsi</h4>
+          <p className="text-sm text-gray-700">{workflowState.analysisResult.recommendation}</p>
         </div>
       </motion.div>
     );
   };
 
   const renderStepIndicator = () => (
-    <div className="glass-effect p-4 h-full">
-      <h4 className="font-semibold mb-3 text-cyber">AI Prosesi</h4>
+    <div className="glass-card p-4 h-full shadow-soft">
+      <h4 className="font-semibold mb-3 text-gray-900">AI Prosesi</h4>
       <div className="space-y-3">
         {steps.map((step, index) => (
           <motion.div
@@ -293,20 +293,20 @@ export default function CandidateAnalysis({ isActive, command }: CandidateAnalys
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: index * 0.1 }}
-            className={`flex items-start text-sm p-3 rounded-lg border transition-all duration-300 ${
-              step.status === 'completed' ? 'text-green-400 bg-green-400/10 border-green-400/30' :
-              step.status === 'processing' ? 'text-cyber-blue bg-cyber-blue/10 border-cyber-blue/30 cyber-glow animate-pulse-glow' :
-              'text-gray-500 border-gray-700'
+            className={`flex items-start text-sm p-3 rounded-lg border transition-all duration-300 shadow-soft ${
+              step.status === 'completed' ? 'text-success-600 bg-success-50 border-success-400' :
+              step.status === 'processing' ? 'text-primary-600 bg-primary-50 border-primary-300 shadow-glow-blue animate-pulse-glow' :
+              'text-gray-400 border-gray-200'
             }`}
           >
             <div className="flex-shrink-0 mr-3 mt-0.5">
               {step.status === 'completed' && <CheckCircle className="w-5 h-5" />}
-              {step.status === 'processing' && <div className="w-5 h-5 border-2 border-cyber-blue border-t-transparent rounded-full animate-spin" />}
-              {step.status === 'pending' && <div className="w-5 h-5 border border-gray-500 rounded-full" />}
+              {step.status === 'processing' && <div className="w-5 h-5 border-2 border-primary-600 border-t-transparent rounded-full animate-spin" />}
+              {step.status === 'pending' && <div className="w-5 h-5 border border-gray-400 rounded-full" />}
             </div>
             <div className="flex-1">
-              <div className="font-medium mb-1">{step.title}</div>
-              <div className="text-xs text-gray-400 leading-relaxed">{step.description}</div>
+              <div className="font-medium mb-1 text-gray-900">{step.title}</div>
+              <div className="text-xs text-gray-500 leading-relaxed">{step.description}</div>
             </div>
           </motion.div>
         ))}

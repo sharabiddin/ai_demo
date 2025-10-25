@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
 import { 
   Mail, 
   Search, 
@@ -13,7 +14,10 @@ import {
   Database,
   Wifi,
   Eye,
-  Star
+  Star,
+  Inbox,
+  Send,
+  Building2
 } from 'lucide-react';
 import { Email, Attachment, DocumentHunterStep } from '../data/documentHunterData';
 import { mockEmails, documentHunterSteps, emailProviders } from '../data/documentHunterData';
@@ -195,15 +199,15 @@ export default function DocumentHunter({ isActive, command }: DocumentHunterProp
       ref={emailConnectionRef}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className={`glass-effect p-6 mb-6 transition-all duration-500 ${
+      className={`glass-card p-6 mb-6 transition-all duration-500 shadow-soft hover:shadow-medium ${
         workflowState.currentStep === 0 
-          ? 'ring-2 ring-cyber-blue/50 bg-cyber-blue/5' 
+          ? 'border-2 border-primary-300 shadow-glow-blue bg-primary-50' 
           : ''
       }`}
     >
       <div className="flex items-center mb-4">
-        <Wifi className="w-6 h-6 text-cyber-blue mr-2" />
-        <h3 className="text-xl font-bold text-cyber">Email Sistemi Qoşulması</h3>
+        <Wifi className="w-6 h-6 text-primary-600 mr-2" />
+        <h3 className="text-xl font-bold text-gray-900">Email Sistemi Qoşulması</h3>
       </div>
       
       <div className="grid grid-cols-3 gap-4">
@@ -215,14 +219,18 @@ export default function DocumentHunter({ isActive, command }: DocumentHunterProp
             transition={{ delay: index * 0.2 }}
             className={`p-4 rounded-lg border text-center transition-all duration-300 ${
               provider.status === 'connected' 
-                ? 'border-green-400 bg-green-400/10' 
-                : 'border-cyber-blue bg-cyber-blue/10'
+                ? 'border-success-400 bg-success-50' 
+                : 'border-primary-300 bg-primary-50'
             }`}
           >
-            <div className="text-2xl mb-2">{provider.icon}</div>
-            <div className="font-medium">{provider.name}</div>
+            <div className="flex items-center justify-center mb-3">
+              {provider.name === 'Gmail' && <Image src="/logos/gmail.png" alt="Gmail" width={48} height={48} />}
+              {provider.name === 'Outlook' && <Image src="/logos/outlook.png" alt="Outlook" width={48} height={48} />}
+              {provider.name === 'Exchange' && <Image src="/logos/exchange.png" alt="Exchange" width={48} height={48} />}
+            </div>
+            <div className="font-medium text-gray-900">{provider.name}</div>
             <div className={`text-xs mt-1 ${
-              provider.status === 'connected' ? 'text-green-400' : 'text-cyber-blue'
+              provider.status === 'connected' ? 'text-success-600' : 'text-primary-600'
             }`}>
               {provider.status === 'connected' ? '✓ Connected' : '⚡ Connecting...'}
             </div>
@@ -230,10 +238,10 @@ export default function DocumentHunter({ isActive, command }: DocumentHunterProp
         ))}
       </div>
       
-      <div className="mt-4 p-3 bg-black/30 rounded-lg">
-        <div className="text-sm text-gray-300">
-          <div className="font-medium text-cyber-blue mb-1">Axtarış Sorğusu:</div>
-          <div className="font-mono">{workflowState.searchQuery}</div>
+      <div className="mt-4 p-3 bg-white/90 border border-gray-100 rounded-lg">
+        <div className="text-sm text-gray-700">
+          <div className="font-medium text-primary-600 mb-1">Axtarış Sorğusu:</div>
+          <div className="font-mono text-gray-700">{workflowState.searchQuery}</div>
         </div>
       </div>
     </motion.div>
@@ -244,18 +252,18 @@ export default function DocumentHunter({ isActive, command }: DocumentHunterProp
       ref={emailScanRef}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className={`glass-effect p-6 mb-6 transition-all duration-500 ${
+      className={`glass-card p-6 mb-6 transition-all duration-500 ${
         workflowState.currentStep === 2 
-          ? 'ring-2 ring-cyber-purple/50 bg-cyber-purple/5' 
+          ? 'border-2 border-accent-300 shadow-glow-purple bg-accent-50' 
           : ''
       }`}
     >
       <div className="flex items-center mb-4">
-        <Search className="w-6 h-6 text-cyber-purple mr-2" />
-        <h3 className="text-xl font-bold text-cyber">Email Tarama İrəliləyişi</h3>
+        <Search className="w-6 h-6 text-accent-600 mr-2" />
+        <h3 className="text-xl font-bold text-gray-900">Email Tarama İrəliləyişi</h3>
         {workflowState.currentStep === 2 && (
           <div className="ml-auto">
-            <Scan className="w-6 h-6 text-cyber-purple animate-pulse" />
+            <Scan className="w-6 h-6 text-accent-600 animate-pulse" />
           </div>
         )}
       </div>
@@ -284,7 +292,7 @@ export default function DocumentHunter({ isActive, command }: DocumentHunterProp
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: 20 }}
-              className="p-3 bg-black/30 rounded-lg border border-gray-600"
+              className="p-3 bg-white/90 border border-gray-100 rounded-lg border border-gray-600"
             >
               <div className="flex items-center justify-between">
                 <div className="flex-1">
@@ -292,7 +300,7 @@ export default function DocumentHunter({ isActive, command }: DocumentHunterProp
                   <div className="text-xs text-gray-400">Göndərən: {email.from}</div>
                 </div>
                 {email.isRelevant && (
-                  <div className="ml-2 text-green-400">
+                  <div className="ml-2 text-success-600">
                     <CheckCircle className="w-4 h-4" />
                   </div>
                 )}
@@ -309,15 +317,15 @@ export default function DocumentHunter({ isActive, command }: DocumentHunterProp
       ref={documentsRef}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className={`glass-effect p-6 mb-6 transition-all duration-500 ${
+      className={`glass-card p-6 mb-6 transition-all duration-500 ${
         workflowState.currentStep === 3 || workflowState.currentStep === 4
-          ? 'ring-2 ring-cyber-pink/50 bg-cyber-pink/5' 
+          ? 'border-2 border-accent-400 shadow-glow-purple bg-accent-50' 
           : ''
       }`}
     >
       <div className="flex items-center mb-4">
-        <FileText className="w-6 h-6 text-cyber-pink mr-2" />
-        <h3 className="text-xl font-bold text-cyber">Sənəd Analizi</h3>
+        <FileText className="w-6 h-6 text-accent-500 mr-2" />
+        <h3 className="text-xl font-bold text-gray-900">Sənəd Analizi</h3>
       </div>
       
       <div className="space-y-3">
@@ -327,14 +335,14 @@ export default function DocumentHunter({ isActive, command }: DocumentHunterProp
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.3 }}
-            className="p-4 bg-black/30 rounded-lg border border-gray-600"
+            className="p-4 bg-white/90 border border-gray-100 rounded-lg border border-gray-600"
           >
             <div className="flex items-start justify-between mb-3">
               <div className="flex-1">
                 <div className="font-medium">{email.subject}</div>
                 <div className="text-sm text-gray-400">Göndərən: {email.from} • {email.date}</div>
               </div>
-              <div className="text-green-400">
+              <div className="text-success-600">
                 <Eye className="w-5 h-5" />
               </div>
             </div>
@@ -349,7 +357,7 @@ export default function DocumentHunter({ isActive, command }: DocumentHunterProp
                     transition={{ delay: (index * 0.3) + (attIndex * 0.2) }}
                     className={`p-3 rounded-lg border ${
                       attachment.isDocument 
-                        ? 'border-cyber-pink bg-cyber-pink/10' 
+                        ? 'border-accent-400 bg-accent-50' 
                         : 'border-gray-600 bg-gray-800/50'
                     }`}
                   >
@@ -362,7 +370,7 @@ export default function DocumentHunter({ isActive, command }: DocumentHunterProp
                         </div>
                       </div>
                       {attachment.relevanceScore && (
-                        <div className="flex items-center text-cyber-pink">
+                        <div className="flex items-center text-accent-500">
                           <Star className="w-4 h-4 mr-1" />
                           <span className="text-sm font-bold">{attachment.relevanceScore}%</span>
                         </div>
@@ -370,7 +378,7 @@ export default function DocumentHunter({ isActive, command }: DocumentHunterProp
                     </div>
                     
                     {attachment.extractedText && (
-                      <div className="mt-3 p-2 bg-black/50 rounded text-xs font-mono">
+                      <div className="mt-3 p-2 bg-gray-100 border border-gray-200 rounded text-xs font-mono">
                         {attachment.extractedText.slice(0, 200)}...
                       </div>
                     )}
@@ -389,34 +397,34 @@ export default function DocumentHunter({ isActive, command }: DocumentHunterProp
       ref={resultsRef}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className={`glass-effect p-6 transition-all duration-500 ${
+      className={`glass-card p-6 transition-all duration-500 ${
         workflowState.currentStep === 5
           ? 'ring-2 ring-green-400/50 bg-green-400/5'
           : ''
       }`}
     >
       <div className="flex items-center mb-4">
-        <Download className="w-6 h-6 text-green-400 mr-2" />
-        <h3 className="text-xl font-bold text-cyber">Axtarış Nəticələri</h3>
+        <Download className="w-6 h-6 text-success-600 mr-2" />
+        <h3 className="text-xl font-bold text-gray-900">Axtarış Nəticələri</h3>
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-        <div className="text-center p-4 bg-green-400/10 rounded-lg border border-green-400/30">
-          <div className="text-2xl font-bold text-green-400">{workflowState.foundEmails.length}</div>
+        <div className="text-center p-4 bg-success-50 rounded-lg border border-success-400/30">
+          <div className="text-2xl font-bold text-success-600">{workflowState.foundEmails.length}</div>
           <div className="text-sm text-gray-400">Müvafiq Emaillər</div>
         </div>
-        <div className="text-center p-4 bg-cyber-blue/10 rounded-lg border border-cyber-blue/30">
-          <div className="text-2xl font-bold text-cyber-blue">{workflowState.relevantAttachments.length}</div>
+        <div className="text-center p-4 bg-primary-50 rounded-lg border border-primary-300/30">
+          <div className="text-2xl font-bold text-primary-600">{workflowState.relevantAttachments.length}</div>
           <div className="text-sm text-gray-400">Tapılan Sənədlər</div>
         </div>
-        <div className="text-center p-4 bg-cyber-pink/10 rounded-lg border border-cyber-pink/30">
-          <div className="text-2xl font-bold text-cyber-pink">98%</div>
+        <div className="text-center p-4 bg-accent-50 rounded-lg border border-accent-400/30">
+          <div className="text-2xl font-bold text-accent-500">98%</div>
           <div className="text-sm text-gray-400">Uyğunluq Dəqiqliyi</div>
         </div>
       </div>
 
-      <div className="bg-green-400/10 border border-green-400/30 rounded-lg p-4">
-        <h4 className="font-semibold text-green-400 mb-3">🎯 AI Summary</h4>
+      <div className="bg-success-50 border border-success-400/30 rounded-lg p-4">
+        <h4 className="font-semibold text-success-600 mb-3">🎯 AI Summary</h4>
         <div className="text-sm space-y-2">
           <p>✅ <strong>Əmək Müqaviləsi Tapıldı:</strong> John Smith-in imzalanmış müqaviləsi tapıldı</p>
           <p>✅ <strong>Əsas Təfərrüatlar Çıxarıldı:</strong> Vəzifə: Senior Developer, Maaş: $95,000</p>
@@ -428,8 +436,8 @@ export default function DocumentHunter({ isActive, command }: DocumentHunterProp
   );
 
   const renderStepIndicator = () => (
-    <div className="glass-effect p-4 h-full">
-      <h4 className="font-semibold mb-3 text-cyber">Sənəd Ovlacısı TAPx</h4>
+    <div className="glass-card p-4 h-full">
+      <h4 className="font-semibold mb-3 text-gray-900">Sənəd Ovlacısı TAPx</h4>
       <div className="space-y-3">
         {steps.map((step, index) => (
           <motion.div
@@ -438,21 +446,21 @@ export default function DocumentHunter({ isActive, command }: DocumentHunterProp
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: index * 0.1 }}
             className={`flex items-start text-sm p-3 rounded-lg border transition-all duration-300 ${
-              step.status === 'completed' ? 'text-green-400 bg-green-400/10 border-green-400/30' :
-              step.status === 'processing' ? 'text-cyber-blue bg-cyber-blue/10 border-cyber-blue/30 cyber-glow animate-pulse-glow' :
+              step.status === 'completed' ? 'text-success-600 bg-success-50 border-success-400/30' :
+              step.status === 'processing' ? 'text-primary-600 bg-primary-50 border-primary-300/30 cyber-glow animate-pulse-glow' :
               'text-gray-500 border-gray-700'
             }`}
           >
             <div className="flex-shrink-0 mr-3 mt-0.5">
               {step.status === 'completed' && <CheckCircle className="w-5 h-5" />}
-              {step.status === 'processing' && <div className="w-5 h-5 border-2 border-cyber-blue border-t-transparent rounded-full animate-spin" />}
+              {step.status === 'processing' && <div className="w-5 h-5 border-2 border-primary-300 border-t-transparent rounded-full animate-spin" />}
               {step.status === 'pending' && <div className="w-5 h-5 border border-gray-500 rounded-full" />}
             </div>
             <div className="flex-1">
               <div className="font-medium mb-1">{step.title}</div>
               <div className="text-xs text-gray-400 leading-relaxed">{step.description}</div>
               {step.details && step.status === 'processing' && (
-                <div className="text-xs text-cyber-blue mt-1 italic">{step.details}</div>
+                <div className="text-xs text-primary-600 mt-1 italic">{step.details}</div>
               )}
             </div>
           </motion.div>

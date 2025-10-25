@@ -193,15 +193,15 @@ export default function SalaryNegotiationOracle({ isActive, command }: SalaryNeg
       ref={employeeProfileRef}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className={`backdrop-blur-md bg-gray-800/60 p-6 mb-6 rounded-xl border transition-all duration-500 ${
+      className={`glass-card p-6 mb-6 rounded-xl border-2 border-gray-200 transition-all duration-500 shadow-soft hover:shadow-medium ${
         workflowState.currentStep === 0 
-          ? 'border-green-500/50 bg-gradient-to-br from-green-500/10 to-transparent' 
-          : 'border-gray-600/30'
+          ? 'border-success-400 shadow-glow-blue bg-gradient-to-br from-success-50 to-transparent' 
+          : 'border-gray-200'
       }`}
     >
       <div className="flex items-center mb-4">
         <Users className="w-6 h-6 text-green-500 mr-2" />
-        <h3 className="text-xl font-bold text-cyber">İşçi Analizi</h3>
+        <h3 className="text-xl font-bold text-gray-900">İşçi Analizi</h3>
         {workflowState.currentStep === 0 && (
           <div className="ml-auto">
             <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse" />
@@ -211,13 +211,13 @@ export default function SalaryNegotiationOracle({ isActive, command }: SalaryNeg
       
       {workflowState.employee && (
         <div className="space-y-4">
-          <div className="flex items-center p-4 bg-black/30 rounded-lg">
+          <div className="flex items-center p-4 bg-white/90 border border-gray-100 rounded-lg">
             <div className="w-16 h-16 bg-gradient-to-br from-green-500/20 to-blue-500/20 rounded-full flex items-center justify-center mr-4">
               <Users className="w-8 h-8 text-green-500" />
             </div>
             <div className="flex-1">
-              <h4 className="font-semibold text-gray-100 text-lg">{workflowState.employee.name}</h4>
-              <p className="text-gray-300">{workflowState.employee.currentRole}</p>
+              <h4 className="font-semibold text-gray-900 text-lg">{workflowState.employee.name}</h4>
+              <p className="text-gray-700">{workflowState.employee.currentRole}</p>
               <p className="text-sm text-gray-400">{workflowState.employee.department} • {workflowState.employee.location}</p>
               <div className="flex gap-4 mt-2 text-sm">
                 <span className="text-green-400">Performance: {workflowState.employee.performance}%</span>
@@ -225,7 +225,7 @@ export default function SalaryNegotiationOracle({ isActive, command }: SalaryNeg
               </div>
             </div>
             <div className="text-right">
-              <div className="text-2xl font-bold text-gray-100">
+              <div className="text-2xl font-bold text-gray-900">
                 ${workflowState.employee.currentSalary.toLocaleString()}
               </div>
               <div className="text-sm text-gray-400">Hazırkı Maaş</div>
@@ -234,22 +234,22 @@ export default function SalaryNegotiationOracle({ isActive, command }: SalaryNeg
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div className="p-3 bg-black/30 rounded-lg text-center">
+            <div className="p-3 bg-white/90 border border-gray-100 rounded-lg text-center">
               <Trophy className="w-5 h-5 text-yellow-400 mx-auto mb-1" />
               <div className="text-lg font-bold text-yellow-400">{workflowState.employee.performance}%</div>
               <div className="text-xs text-gray-400">Performans</div>
             </div>
-            <div className="p-3 bg-black/30 rounded-lg text-center">
+            <div className="p-3 bg-white/90 border border-gray-100 rounded-lg text-center">
               <Building className="w-5 h-5 text-blue-400 mx-auto mb-1" />
               <div className="text-lg font-bold text-blue-400">{workflowState.employee.experience}</div>
               <div className="text-xs text-gray-400">İl</div>
             </div>
-            <div className="p-3 bg-black/30 rounded-lg text-center">
+            <div className="p-3 bg-white/90 border border-gray-100 rounded-lg text-center">
               <Zap className="w-5 h-5 text-purple-400 mx-auto mb-1" />
               <div className="text-lg font-bold text-purple-400">{workflowState.employee.skills.length}</div>
               <div className="text-xs text-gray-400">Bacarıqlar</div>
             </div>
-            <div className="p-3 bg-black/30 rounded-lg text-center">
+            <div className="p-3 bg-white/90 border border-gray-100 rounded-lg text-center">
               <TrendingUp className="w-5 h-5 text-green-400 mx-auto mb-1" />
               <div className="text-lg font-bold text-green-400">${workflowState.employee.marketValue?.toLocaleString()}</div>
               <div className="text-xs text-gray-400">Bazar Dəyəri</div>
@@ -265,18 +265,18 @@ export default function SalaryNegotiationOracle({ isActive, command }: SalaryNeg
       ref={marketAnalysisRef}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className={`backdrop-blur-md bg-gray-800/60 p-6 mb-6 rounded-xl border transition-all duration-500 ${
+      className={`glass-card p-6 mb-6 rounded-xl border-2 border-gray-200 transition-all duration-500 shadow-soft hover:shadow-medium ${
         workflowState.currentStep === 1 
-          ? 'border-cyber-blue/50 bg-gradient-to-br from-cyber-blue/10 to-transparent' 
-          : 'border-gray-600/30'
+          ? 'border-primary-300 shadow-glow-blue bg-gradient-to-br from-primary-50 to-transparent' 
+          : 'border-gray-200'
       }`}
     >
       <div className="flex items-center mb-4">
-        <BarChart3 className="w-6 h-6 text-cyber-blue mr-2" />
-        <h3 className="text-xl font-bold text-cyber">Real Vaxt Bazar Analizi</h3>
+        <BarChart3 className="w-6 h-6 text-primary-600 mr-2" />
+        <h3 className="text-xl font-bold text-gray-900">Real Vaxt Bazar Analizi</h3>
         {workflowState.currentStep === 1 && (
           <div className="ml-auto">
-            <Zap className="w-6 h-6 text-cyber-blue animate-pulse" />
+            <Zap className="w-6 h-6 text-primary-600 animate-pulse" />
           </div>
         )}
       </div>
@@ -294,11 +294,11 @@ export default function SalaryNegotiationOracle({ isActive, command }: SalaryNeg
                   ? source.status === 'connected' 
                     ? 'border-green-400/50 bg-green-400/10' 
                     : 'border-gray-500/50 bg-gray-500/10'
-                  : 'border-gray-700 bg-black/20'
+                  : 'border-gray-200 bg-gray-50'
               }`}
             >
               <div className="text-xl mb-1">{source.icon}</div>
-              <div className="font-medium text-gray-100 text-sm">{source.name}</div>
+              <div className="font-medium text-gray-900 text-sm">{source.name}</div>
               <div className={`text-xs mt-1 ${
                 source.status === 'connected' ? 'text-green-400' : 'text-gray-400'
               }`}>
@@ -311,10 +311,10 @@ export default function SalaryNegotiationOracle({ isActive, command }: SalaryNeg
         </div>
 
         {workflowState.totalDataPoints > 0 && (
-          <div className="bg-black/30 p-4 rounded-lg">
+          <div className="bg-white/90 border border-gray-100 p-4 rounded-lg">
             <div className="flex items-center justify-between mb-3">
-              <h4 className="font-semibold text-gray-100">Bazar Məlumatları Xülasəsi</h4>
-              <div className="text-cyber-blue font-bold">{workflowState.totalDataPoints.toLocaleString()} data points</div>
+              <h4 className="font-semibold text-gray-900">Bazar Məlumatları Xülasəsi</h4>
+              <div className="text-primary-600 font-bold">{workflowState.totalDataPoints.toLocaleString()} data points</div>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -336,19 +336,19 @@ export default function SalaryNegotiationOracle({ isActive, command }: SalaryNeg
 
         {workflowState.marketData.length > 0 && (
           <div className="space-y-2">
-            <h4 className="font-semibold text-gray-100">Canlı Bazar Məlumatları Axını</h4>
+            <h4 className="font-semibold text-gray-900">Canlı Bazar Məlumatları Axını</h4>
             {workflowState.marketData.map((data, index) => (
               <motion.div
                 key={data.id}
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: index * 0.3 }}
-                className="flex items-center justify-between p-3 bg-black/30 rounded border border-gray-600/50"
+                className="flex items-center justify-between p-3 bg-white/90 border border-gray-100 rounded shadow-soft"
               >
                 <div className="flex items-center">
                   <div className="w-2 h-2 bg-green-400 rounded-full mr-3 animate-pulse" />
                   <div>
-                    <div className="font-medium text-gray-100">{data.source}</div>
+                    <div className="font-medium text-gray-900">{data.source}</div>
                     <div className="text-sm text-gray-400">{data.company} • {data.experience} təcrübə</div>
                   </div>
                 </div>
@@ -369,15 +369,15 @@ export default function SalaryNegotiationOracle({ isActive, command }: SalaryNeg
       ref={competitorOffersRef}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className={`backdrop-blur-md bg-gray-800/60 p-6 mb-6 rounded-xl border transition-all duration-500 ${
+      className={`glass-card p-6 mb-6 rounded-xl border-2 border-gray-200 transition-all duration-500 shadow-soft hover:shadow-medium ${
         workflowState.currentStep === 2 
-          ? 'border-cyber-purple/50 bg-gradient-to-br from-cyber-purple/10 to-transparent' 
-          : 'border-gray-600/30'
+          ? 'border-accent-300 shadow-glow-purple bg-gradient-to-br from-accent-50 to-transparent' 
+          : 'border-gray-200'
       }`}
     >
       <div className="flex items-center mb-4">
-        <Target className="w-6 h-6 text-cyber-purple mr-2" />
-        <h3 className="text-xl font-bold text-cyber">Rəqib Təklifləri Kəşfiyyatı</h3>
+        <Target className="w-6 h-6 text-accent-600 mr-2" />
+        <h3 className="text-xl font-bold text-gray-900">Rəqib Təklifləri Kəşfiyyatı</h3>
       </div>
       
       {workflowState.competitorOffers.length > 0 && (
@@ -388,20 +388,20 @@ export default function SalaryNegotiationOracle({ isActive, command }: SalaryNeg
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.4 }}
-              className="p-4 bg-black/40 rounded-lg border border-gray-600/50"
+              className="p-4 bg-white/90 border border-gray-100 rounded-lg shadow-soft"
             >
               <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center">
-                  <div className="w-10 h-10 bg-cyber-purple/20 rounded-lg flex items-center justify-center mr-3">
-                    <Building className="w-5 h-5 text-cyber-purple" />
+                  <div className="w-10 h-10 bg-accent-50 rounded-lg flex items-center justify-center mr-3">
+                    <Building className="w-5 h-5 text-accent-600" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-100">{offer.company}</h4>
+                    <h4 className="font-semibold text-gray-900">{offer.company}</h4>
                     <div className="text-sm text-gray-400">{offer.role}</div>
                   </div>
                 </div>
                 <div className="text-right">
-                  <div className="text-xl font-bold text-cyber-purple">${offer.salary.toLocaleString()}</div>
+                  <div className="text-xl font-bold text-accent-600">${offer.salary.toLocaleString()}</div>
                   <div className="flex items-center text-sm">
                     <Percent className="w-3 h-3 mr-1" />
                     <span className="text-green-400">{offer.likelihood}% likely</span>
@@ -437,15 +437,15 @@ export default function SalaryNegotiationOracle({ isActive, command }: SalaryNeg
       ref={predictionRef}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className={`backdrop-blur-md bg-gray-800/60 p-6 rounded-xl border transition-all duration-500 ${
+      className={`glass-card p-6 rounded-xl border transition-all duration-500 ${
         workflowState.currentStep === 5
           ? 'border-green-400/50 bg-gradient-to-br from-green-400/10 to-transparent'
-          : 'border-gray-600/30'
+          : 'border-2 border-gray-200'
       }`}
     >
       <div className="flex items-center mb-4">
         <Calculator className="w-6 h-6 text-green-400 mr-2" />
-        <h3 className="text-xl font-bold text-cyber">TAPx Danışıq Proqnozu</h3>
+        <h3 className="text-xl font-bold text-gray-900">TAPx Danışıq Proqnozu</h3>
       </div>
       
       {workflowState.prediction && (
@@ -520,26 +520,26 @@ export default function SalaryNegotiationOracle({ isActive, command }: SalaryNeg
             </h4>
             <div className="space-y-3">
               <div className="flex items-center justify-between">
-                <span className="text-gray-300">Strategiya:</span>
+                <span className="text-gray-700">Strategiya:</span>
                 <span className="text-blue-400 font-medium">{workflowState.prediction.strategy}</span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-gray-300">Optimal Vaxt:</span>
+                <span className="text-gray-700">Optimal Vaxt:</span>
                 <span className="text-green-400 font-medium">{workflowState.prediction.timeline}</span>
               </div>
             </div>
           </div>
 
-          <div className="bg-cyber-purple/10 border border-cyber-purple/30 rounded-lg p-4">
-            <h4 className="font-semibold text-cyber-purple mb-3 flex items-center">
+          <div className="bg-accent-50 border-2 border-accent-200 shadow-soft rounded-lg p-4">
+            <h4 className="font-semibold text-accent-700 mb-3 flex items-center">
               <MessageSquare className="w-5 h-5 mr-2" />
               Danışıq Skriptləri
             </h4>
             <div className="space-y-3">
               {negotiationScripts.slice(0, 2).map((script, index) => (
-                <div key={index} className="p-3 bg-black/30 rounded">
-                  <div className="text-sm font-medium text-cyber-purple mb-1">{script.scenario}:</div>
-                  <div className="text-sm text-gray-300 italic">"{script.script}"</div>
+                <div key={index} className="p-3 bg-white/90 border border-gray-100 rounded">
+                  <div className="text-sm font-medium text-accent-700 mb-1">{script.scenario}:</div>
+                  <div className="text-sm text-gray-700 italic">"{script.script}"</div>
                 </div>
               ))}
             </div>
@@ -550,8 +550,8 @@ export default function SalaryNegotiationOracle({ isActive, command }: SalaryNeg
   );
 
   const renderStepIndicator = () => (
-    <div className="backdrop-blur-md bg-gray-800/60 p-4 h-full rounded-xl border border-gray-600/30">
-      <h4 className="font-semibold mb-3 text-cyber">Maaş Oracle TAPx</h4>
+    <div className="glass-card p-4 h-full rounded-xl border border-2 border-gray-200">
+      <h4 className="font-semibold mb-3 text-gray-900">Maaş Oracle TAPx</h4>
       <div className="space-y-3">
         {steps.map((step, index) => (
           <motion.div
@@ -561,20 +561,20 @@ export default function SalaryNegotiationOracle({ isActive, command }: SalaryNeg
             transition={{ delay: index * 0.1 }}
             className={`flex items-start text-sm p-3 rounded-lg border transition-all duration-300 ${
               step.status === 'completed' ? 'text-green-400 bg-green-400/10 border-green-400/30' :
-              step.status === 'processing' ? 'text-cyber-blue bg-cyber-blue/10 border-cyber-blue/30 cyber-glow animate-pulse-glow' :
-              'text-gray-500 border-gray-700'
+              step.status === 'processing' ? 'text-primary-700 bg-primary-50 border-primary-300  animate-pulse-glow' :
+              'text-gray-500 border-gray-200'
             }`}
           >
             <div className="flex-shrink-0 mr-3 mt-0.5">
               {step.status === 'completed' && <CheckCircle className="w-5 h-5" />}
-              {step.status === 'processing' && <div className="w-5 h-5 border-2 border-cyber-blue border-t-transparent rounded-full animate-spin" />}
+              {step.status === 'processing' && <div className="w-5 h-5 border-2 border-primary-600 border-t-transparent rounded-full animate-spin" />}
               {step.status === 'pending' && <div className="w-5 h-5 border border-gray-500 rounded-full" />}
             </div>
             <div className="flex-1">
               <div className="font-medium mb-1">{step.title}</div>
               <div className="text-xs text-gray-400 leading-relaxed">{step.description}</div>
               {step.details && step.status === 'processing' && (
-                <div className="text-xs text-cyber-blue mt-1 italic">{step.details}</div>
+                <div className="text-xs text-primary-700 mt-1 italic">{step.details}</div>
               )}
             </div>
           </motion.div>

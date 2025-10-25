@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
 import { 
   Video, 
   Mic, 
@@ -15,7 +16,9 @@ import {
   Heart,
   BarChart3,
   MessageSquare,
-  Target
+  Target,
+  Monitor,
+  Building2
 } from 'lucide-react';
 import { Meeting, Participant, EmotionAnalyzerStep, EmotionData } from '../data/emotionAnalyzerData';
 import { mockMeetings, emotionAnalyzerSteps, meetingPlatforms, emotionColors } from '../data/emotionAnalyzerData';
@@ -198,15 +201,15 @@ export default function EmotionAnalyzer({ isActive, command }: EmotionAnalyzerPr
       ref={platformsRef}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className={`backdrop-blur-md bg-gray-800/60 p-6 mb-6 rounded-xl border transition-all duration-500 ${
+      className={`glass-card p-6 mb-6 rounded-xl border-2 border-gray-200 transition-all duration-500 shadow-soft hover:shadow-medium ${
         workflowState.currentStep === 0 
-          ? 'border-cyber-blue/50 bg-gradient-to-br from-cyber-blue/10 to-transparent' 
-          : 'border-gray-600/30'
+          ? 'border-primary-300 shadow-glow-blue bg-gradient-to-br from-primary-50 to-transparent' 
+          : 'border-gray-200'
       }`}
     >
       <div className="flex items-center mb-4">
-        <Video className="w-6 h-6 text-cyber-blue mr-2" />
-        <h3 className="text-xl font-bold text-cyber">Görüş Platforması Qoşulması</h3>
+        <Video className="w-6 h-6 text-primary-600 mr-2" />
+        <h3 className="text-xl font-bold text-gray-900">Görüş Platforması Qoşulması</h3>
       </div>
       
       <div className="grid grid-cols-3 gap-4">
@@ -218,14 +221,18 @@ export default function EmotionAnalyzer({ isActive, command }: EmotionAnalyzerPr
             transition={{ delay: index * 0.3 }}
             className={`p-4 rounded-lg border text-center transition-all duration-300 ${
               platform.status === 'connected' 
-                ? 'border-green-400/50 bg-green-400/10' 
-                : 'border-cyber-blue/50 bg-cyber-blue/10'
+                ? 'border-success-400 bg-success-50' 
+                : 'border-primary-300 bg-primary-50'
             }`}
           >
-            <div className="text-3xl mb-2">{platform.icon}</div>
-            <div className="font-medium text-gray-100">{platform.name}</div>
+            <div className="flex items-center justify-center mb-3">
+              {platform.name === 'Zoom' && <Image src="/logos/zoom.png" alt="Zoom" width={48} height={48} />}
+              {platform.name === 'Teams' && <Image src="/logos/teams.png" alt="Teams" width={48} height={48} />}
+              {platform.name === 'Google Meet' && <Image src="/logos/google-meet.png" alt="Google Meet" width={48} height={48} />}
+            </div>
+            <div className="font-medium text-gray-900">{platform.name}</div>
             <div className={`text-xs mt-1 ${
-              platform.status === 'connected' ? 'text-green-400' : 'text-cyber-blue'
+              platform.status === 'connected' ? 'text-success-600' : 'text-primary-600'
             }`}>
               {platform.status === 'connected' 
                 ? `✓ ${platform.meetingsFound} meetings found` 
@@ -242,28 +249,28 @@ export default function EmotionAnalyzer({ isActive, command }: EmotionAnalyzerPr
       ref={videoAnalysisRef}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className={`backdrop-blur-md bg-gray-800/60 p-6 mb-6 rounded-xl border transition-all duration-500 ${
+      className={`glass-card p-6 mb-6 rounded-xl border-2 transition-all duration-500 shadow-soft hover:shadow-medium ${
         workflowState.currentStep === 1 || workflowState.currentStep === 2
-          ? 'border-cyber-purple/50 bg-gradient-to-br from-cyber-purple/10 to-transparent' 
-          : 'border-gray-600/30'
+          ? 'border-accent-300 shadow-glow-purple bg-gradient-to-br from-accent-50 to-transparent' 
+          : 'border-gray-200'
       }`}
     >
       <div className="flex items-center mb-4">
-        <Brain className="w-6 h-6 text-cyber-purple mr-2" />
-        <h3 className="text-xl font-bold text-cyber">TAPx Emosiya Atmlıması</h3>
+        <Brain className="w-6 h-6 text-accent-600 mr-2" />
+        <h3 className="text-xl font-bold text-gray-900">TAPx Emosiya Atmlıması</h3>
         {(workflowState.currentStep === 1 || workflowState.currentStep === 2) && (
           <div className="ml-auto flex items-center">
             <div className="scanning-line"></div>
-            <Zap className="w-6 h-6 text-cyber-purple animate-pulse ml-2" />
+            <Zap className="w-6 h-6 text-accent-600 animate-pulse ml-2" />
           </div>
         )}
       </div>
       
       {workflowState.currentMeeting && (
         <div className="space-y-4">
-          <div className="p-4 bg-black/30 rounded-lg">
-            <h4 className="font-semibold text-gray-100 mb-2">📅 {workflowState.currentMeeting.title}</h4>
-            <div className="text-sm text-gray-400">
+          <div className="p-4 bg-white/90 border border-gray-100 rounded-lg shadow-soft">
+            <h4 className="font-semibold text-gray-900 mb-2">📅 {workflowState.currentMeeting.title}</h4>
+            <div className="text-sm text-gray-600">
               {workflowState.currentMeeting.date} • {workflowState.currentMeeting.duration} • {workflowState.currentMeeting.participants.length} participants
             </div>
           </div>
@@ -275,29 +282,29 @@ export default function EmotionAnalyzer({ isActive, command }: EmotionAnalyzerPr
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: index * 0.5 }}
-                className="p-4 bg-black/40 rounded-lg border border-gray-600/50"
+                className="p-4 bg-white/90 border border-gray-200 rounded-lg shadow-soft hover:shadow-medium transition-all"
               >
                 <div className="flex items-center mb-3">
                   <div className="text-2xl mr-3">{participant.avatar}</div>
                   <div>
-                    <div className="font-medium text-gray-100">{participant.name}</div>
-                    <div className="text-xs text-gray-400">{participant.role}</div>
+                    <div className="font-medium text-gray-900">{participant.name}</div>
+                    <div className="text-xs text-gray-600">{participant.role}</div>
                   </div>
                 </div>
                 
                 <div className="space-y-2">
                   <div className="flex justify-between text-sm">
-                    <span className="text-gray-300">Danişıq Vaxtı:</span>
-                    <span className="text-cyber-blue">{participant.speakingTime}%</span>
+                    <span className="text-gray-700">Danişıq Vaxtı:</span>
+                    <span className="text-primary-600 font-semibold">{participant.speakingTime}%</span>
                   </div>
                   <div className="flex justify-between text-sm">
-                    <span className="text-gray-300">Engagement:</span>
-                    <span className="text-green-400">{participant.engagementScore}%</span>
+                    <span className="text-gray-700">Engagement:</span>
+                    <span className="text-success-600 font-semibold">{participant.engagementScore}%</span>
                   </div>
                   
                   {participant.emotions.length > 0 && (
                     <div className="mt-3">
-                      <div className="text-xs text-gray-400 mb-2">Atmlınan Emosiyalar:</div>
+                      <div className="text-xs text-gray-600 font-medium mb-2">Atmlınan Emosiyalar:</div>
                       <div className="flex flex-wrap gap-1">
                         {participant.emotions.slice(0, 2).map((emotion, idx) => (
                           <span
@@ -328,28 +335,28 @@ export default function EmotionAnalyzer({ isActive, command }: EmotionAnalyzerPr
       ref={emotionTimelineRef}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className={`backdrop-blur-md bg-gray-800/60 p-6 mb-6 rounded-xl border transition-all duration-500 ${
+      className={`glass-card p-6 mb-6 rounded-xl border-2 transition-all duration-500 shadow-soft hover:shadow-medium ${
         workflowState.currentStep === 4
-          ? 'border-cyber-pink/50 bg-gradient-to-br from-cyber-pink/10 to-transparent' 
-          : 'border-gray-600/30'
+          ? 'border-accent-400 shadow-glow-purple bg-gradient-to-br from-accent-50 to-transparent' 
+          : 'border-gray-200'
       }`}
     >
       <div className="flex items-center mb-4">
-        <BarChart3 className="w-6 h-6 text-cyber-pink mr-2" />
-        <h3 className="text-xl font-bold text-cyber">Emosiya Zaman Xətti Analizi</h3>
+        <BarChart3 className="w-6 h-6 text-accent-600 mr-2" />
+        <h3 className="text-xl font-bold text-gray-900">Emosiya Zaman Xətti Analizi</h3>
       </div>
       
       {workflowState.emotionTimeline.length > 0 && (
         <div className="space-y-4">
-          <div className="bg-black/30 p-4 rounded-lg">
-            <h4 className="font-semibold text-gray-100 mb-3">Görüş Stenogram Analizi</h4>
-            <div className="text-sm text-gray-300 leading-relaxed">
+          <div className="bg-white/90 border border-gray-100 p-4 rounded-lg shadow-soft">
+            <h4 className="font-semibold text-gray-900 mb-3">Görüş Stenogram Analizi</h4>
+            <div className="text-sm text-gray-700 leading-relaxed">
               {workflowState.currentMeeting?.transcript}
             </div>
           </div>
 
-          <div className="bg-black/30 p-4 rounded-lg">
-            <h4 className="font-semibold text-gray-100 mb-3">Real Vaxt Emosiya Axını</h4>
+          <div className="bg-white/90 border border-gray-100 p-4 rounded-lg shadow-soft">
+            <h4 className="font-semibold text-gray-900 mb-3">Real Vaxt Emosiya Axını</h4>
             <div className="space-y-2">
               {workflowState.emotionTimeline.map((emotion, index) => (
                 <motion.div
@@ -357,18 +364,18 @@ export default function EmotionAnalyzer({ isActive, command }: EmotionAnalyzerPr
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: index * 0.1 }}
-                  className="flex items-center justify-between p-2 bg-gray-800/50 rounded"
+                  className="flex items-center justify-between p-3 bg-gray-50 border border-gray-200 rounded-lg hover:shadow-soft transition-all"
                 >
                   <div className="flex items-center">
-                    <div className="text-xs text-gray-400 w-12">{emotion.timestamp}</div>
+                    <div className="text-xs text-gray-600 font-medium w-12">{emotion.timestamp}</div>
                     <div 
                       className="w-3 h-3 rounded-full mr-3"
                       style={{ backgroundColor: emotionColors[emotion.emotion] }}
                     />
-                    <div className="text-sm text-gray-100 capitalize">{emotion.emotion}</div>
+                    <div className="text-sm text-gray-900 capitalize font-medium">{emotion.emotion}</div>
                   </div>
                   <div className="flex items-center">
-                    <div className="text-xs text-gray-400 mr-2">Confidence:</div>
+                    <div className="text-xs text-gray-600 mr-2">Confidence:</div>
                     <div className="text-xs font-medium" style={{ color: emotionColors[emotion.emotion] }}>
                       {emotion.confidence}%
                     </div>
@@ -387,35 +394,35 @@ export default function EmotionAnalyzer({ isActive, command }: EmotionAnalyzerPr
       ref={insightsRef}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className={`backdrop-blur-md bg-gray-800/60 p-6 rounded-xl border transition-all duration-500 ${
+      className={`glass-card p-6 rounded-xl border-2 transition-all duration-500 shadow-soft hover:shadow-medium ${
         workflowState.currentStep === 5
-          ? 'border-green-400/50 bg-gradient-to-br from-green-400/10 to-transparent'
-          : 'border-gray-600/30'
+          ? 'border-success-400 shadow-glow-green bg-gradient-to-br from-success-50 to-transparent'
+          : 'border-gray-200'
       }`}
     >
       <div className="flex items-center mb-4">
-        <Target className="w-6 h-6 text-green-400 mr-2" />
-        <h3 className="text-xl font-bold text-cyber">AI Nəticələr və Tövsiyələr</h3>
+        <Target className="w-6 h-6 text-success-600 mr-2" />
+        <h3 className="text-xl font-bold text-gray-900">AI Nəticələr və Tövsiyələr</h3>
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-        <div className="text-center p-4 bg-green-400/10 rounded-lg border border-green-400/30">
-          <div className="text-2xl font-bold text-green-400">{workflowState.insights.overallMood}</div>
-          <div className="text-sm text-gray-400">Komanda Əhval-Ruhiyyəsi</div>
+        <div className="text-center p-6 bg-success-50 rounded-xl border-2 border-success-200 shadow-soft">
+          <div className="text-2xl font-bold text-success-700">{workflowState.insights.overallMood}</div>
+          <div className="text-sm text-gray-600 font-medium mt-1">Komanda Əhval-Ruhiyyəsi</div>
         </div>
-        <div className="text-center p-4 bg-red-400/10 rounded-lg border border-red-400/30">
-          <div className="text-2xl font-bold text-red-400">{workflowState.insights.stressLevel}%</div>
-          <div className="text-sm text-gray-400">Stress Səviyyəsi</div>
+        <div className="text-center p-6 bg-red-50 rounded-xl border-2 border-red-200 shadow-soft">
+          <div className="text-2xl font-bold text-red-600">{workflowState.insights.stressLevel}%</div>
+          <div className="text-sm text-gray-600 font-medium mt-1">Stress Səviyyəsi</div>
         </div>
-        <div className="text-center p-4 bg-cyber-blue/10 rounded-lg border border-cyber-blue/30">
-          <div className="text-2xl font-bold text-cyber-blue">{workflowState.insights.engagementScore}%</div>
-          <div className="text-sm text-gray-400">Engagement</div>
+        <div className="text-center p-6 bg-primary-50 rounded-xl border-2 border-primary-200 shadow-soft">
+          <div className="text-2xl font-bold text-primary-700">{workflowState.insights.engagementScore}%</div>
+          <div className="text-sm text-gray-600 font-medium mt-1">Engagement</div>
         </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="bg-red-400/10 border border-red-400/30 rounded-lg p-4">
-          <h4 className="font-semibold text-red-400 mb-3 flex items-center">
+        <div className="bg-red-50 border-2 border-red-200 rounded-xl p-6 shadow-soft">
+          <h4 className="font-semibold text-red-700 mb-3 flex items-center">
             <AlertTriangle className="w-5 h-5 mr-2" />
             Risk Xəbərdarlıqları
           </h4>
@@ -426,17 +433,17 @@ export default function EmotionAnalyzer({ isActive, command }: EmotionAnalyzerPr
                 initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: index * 0.1 }}
-                className="flex items-start text-gray-200"
+                className="flex items-start text-gray-800"
               >
-                <span className="text-red-400 mr-2 mt-1">⚠</span>
+                <span className="text-red-600 mr-2 mt-1">⚠</span>
                 {alert}
               </motion.li>
             ))}
           </ul>
         </div>
 
-        <div className="bg-green-400/10 border border-green-400/30 rounded-lg p-4">
-          <h4 className="font-semibold text-green-400 mb-3 flex items-center">
+        <div className="bg-success-50 border-2 border-success-200 rounded-xl p-6 shadow-soft">
+          <h4 className="font-semibold text-success-700 mb-3 flex items-center">
             <Heart className="w-5 h-5 mr-2" />
             Tövsiyələr
           </h4>
@@ -447,9 +454,9 @@ export default function EmotionAnalyzer({ isActive, command }: EmotionAnalyzerPr
                 initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: index * 0.1 }}
-                className="flex items-start text-gray-200"
+                className="flex items-start text-gray-800"
               >
-                <span className="text-green-400 mr-2 mt-1">✓</span>
+                <span className="text-success-600 mr-2 mt-1">✓</span>
                 {rec}
               </motion.li>
             ))}
@@ -460,8 +467,8 @@ export default function EmotionAnalyzer({ isActive, command }: EmotionAnalyzerPr
   );
 
   const renderStepIndicator = () => (
-    <div className="backdrop-blur-md bg-gray-800/60 p-4 h-full rounded-xl border border-gray-600/30">
-      <h4 className="font-semibold mb-3 text-cyber">Emosiya AI Prosesi</h4>
+    <div className="glass-card p-6 h-full shadow-medium">
+      <h4 className="font-semibold mb-3 text-gradient">Emosiya AI Prosesi</h4>
       <div className="space-y-3">
         {steps.map((step, index) => (
           <motion.div
@@ -470,21 +477,21 @@ export default function EmotionAnalyzer({ isActive, command }: EmotionAnalyzerPr
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: index * 0.1 }}
             className={`flex items-start text-sm p-3 rounded-lg border transition-all duration-300 ${
-              step.status === 'completed' ? 'text-green-400 bg-green-400/10 border-green-400/30' :
-              step.status === 'processing' ? 'text-cyber-blue bg-cyber-blue/10 border-cyber-blue/30 cyber-glow animate-pulse-glow' :
-              'text-gray-500 border-gray-700'
+              step.status === 'completed' ? 'text-success-700 bg-success-50 border-success-300 shadow-soft' :
+              step.status === 'processing' ? 'text-primary-700 bg-primary-50 border-primary-300 shadow-glow-blue animate-pulse' :
+              'text-gray-500 bg-gray-50 border-gray-200'
             }`}
           >
             <div className="flex-shrink-0 mr-3 mt-0.5">
               {step.status === 'completed' && <CheckCircle className="w-5 h-5" />}
-              {step.status === 'processing' && <div className="w-5 h-5 border-2 border-cyber-blue border-t-transparent rounded-full animate-spin" />}
+              {step.status === 'processing' && <div className="w-5 h-5 border-2 border-primary-600 border-t-transparent rounded-full animate-spin" />}
               {step.status === 'pending' && <div className="w-5 h-5 border border-gray-500 rounded-full" />}
             </div>
             <div className="flex-1">
               <div className="font-medium mb-1">{step.title}</div>
-              <div className="text-xs text-gray-400 leading-relaxed">{step.description}</div>
+              <div className="text-xs text-gray-600 leading-relaxed">{step.description}</div>
               {step.details && step.status === 'processing' && (
-                <div className="text-xs text-cyber-blue mt-1 italic">{step.details}</div>
+                <div className="text-xs text-primary-700 mt-1 italic font-medium">{step.details}</div>
               )}
             </div>
           </motion.div>

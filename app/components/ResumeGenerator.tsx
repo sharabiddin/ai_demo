@@ -171,15 +171,15 @@ export default function ResumeGenerator({ isActive, command }: ResumeGeneratorPr
       ref={linkedinConnectionRef}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className={`backdrop-blur-md bg-gray-800/60 p-6 mb-6 rounded-xl border transition-all duration-500 ${
+      className={`glass-card p-6 mb-6 rounded-xl border-2 border-gray-200 transition-all duration-500 shadow-soft hover:shadow-medium ${
         workflowState.currentStep === 0 
-          ? 'border-blue-500/50 bg-gradient-to-br from-blue-500/10 to-transparent' 
-          : 'border-gray-600/30'
+          ? 'border-primary-300 shadow-glow-blue bg-gradient-to-br from-primary-50 to-transparent' 
+          : 'border-gray-200'
       }`}
     >
       <div className="flex items-center mb-4">
         <Linkedin className="w-6 h-6 text-blue-500 mr-2" />
-        <h3 className="text-xl font-bold text-cyber">LinkedIn İnteqrasiyası</h3>
+        <h3 className="text-xl font-bold text-gray-900">LinkedIn İnteqrasiyası</h3>
         {workflowState.currentStep === 0 && (
           <div className="ml-auto">
             <div className="w-3 h-3 bg-blue-500 rounded-full animate-pulse" />
@@ -194,7 +194,7 @@ export default function ResumeGenerator({ isActive, command }: ResumeGeneratorPr
               <Linkedin className="w-6 h-6 text-blue-500" />
             </div>
             <div>
-              <div className="font-semibold text-gray-100">LinkedIn API Qoşulması</div>
+              <div className="font-semibold text-gray-900">LinkedIn API Qoşulması</div>
               <div className="text-sm text-gray-400">Təhlükəsiz OAuth 2.0 Autentifikasiya</div>
             </div>
           </div>
@@ -218,29 +218,29 @@ export default function ResumeGenerator({ isActive, command }: ResumeGeneratorPr
       ref={profileExtractionRef}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className={`backdrop-blur-md bg-gray-800/60 p-6 mb-6 rounded-xl border transition-all duration-500 ${
+      className={`glass-card p-6 mb-6 rounded-xl border-2 border-gray-200 transition-all duration-500 shadow-soft hover:shadow-medium ${
         workflowState.currentStep === 1 
-          ? 'border-cyber-purple/50 bg-gradient-to-br from-cyber-purple/10 to-transparent' 
-          : 'border-gray-600/30'
+          ? 'border-accent-300 shadow-glow-purple bg-gradient-to-br from-accent-50 to-transparent' 
+          : 'border-gray-200'
       }`}
     >
       <div className="flex items-center mb-4">
-        <User className="w-6 h-6 text-cyber-purple mr-2" />
-        <h3 className="text-xl font-bold text-cyber">Profil Məlumatlarının Çıxarılması</h3>
+        <User className="w-6 h-6 text-accent-600 mr-2" />
+        <h3 className="text-xl font-bold text-gray-900">Profil Məlumatlarının Çıxarılması</h3>
         {workflowState.currentStep === 1 && (
           <div className="ml-auto">
-            <Zap className="w-6 h-6 text-cyber-purple animate-pulse" />
+            <Zap className="w-6 h-6 text-accent-600 animate-pulse" />
           </div>
         )}
       </div>
       
       {workflowState.linkedInProfile && (
         <div className="space-y-4">
-          <div className="flex items-center p-4 bg-black/30 rounded-lg">
+          <div className="flex items-center p-4 bg-white/90 border border-gray-100 rounded-lg shadow-soft">
             <div className="text-4xl mr-4">{workflowState.linkedInProfile.profilePicture}</div>
             <div className="flex-1">
-              <h4 className="font-semibold text-gray-100">{workflowState.linkedInProfile.name}</h4>
-              <p className="text-sm text-gray-300">{workflowState.linkedInProfile.headline}</p>
+              <h4 className="font-semibold text-gray-900">{workflowState.linkedInProfile.name}</h4>
+              <p className="text-sm text-gray-700">{workflowState.linkedInProfile.headline}</p>
               <p className="text-xs text-gray-400">{workflowState.linkedInProfile.location}</p>
               <div className="flex gap-4 mt-2 text-xs text-gray-500">
                 <span>{workflowState.linkedInProfile.connections} əlaqə</span>
@@ -250,28 +250,28 @@ export default function ResumeGenerator({ isActive, command }: ResumeGeneratorPr
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="p-4 bg-black/30 rounded-lg">
+            <div className="p-4 bg-white/90 border border-gray-100 rounded-lg shadow-soft">
               <div className="flex items-center mb-2">
-                <Briefcase className="w-5 h-5 text-cyber-blue mr-2" />
-                <span className="font-medium text-gray-100">Təcrübə</span>
+                <Briefcase className="w-5 h-5 text-primary-600 mr-2" />
+                <span className="font-medium text-gray-900">Təcrübə</span>
               </div>
-              <div className="text-2xl font-bold text-cyber-blue">{workflowState.linkedInProfile.experience.length}</div>
+              <div className="text-2xl font-bold text-primary-600">{workflowState.linkedInProfile.experience.length}</div>
               <div className="text-xs text-gray-400">vəzifə</div>
             </div>
             
-            <div className="p-4 bg-black/30 rounded-lg">
+            <div className="p-4 bg-white/90 border border-gray-100 rounded-lg shadow-soft">
               <div className="flex items-center mb-2">
                 <GraduationCap className="w-5 h-5 text-green-400 mr-2" />
-                <span className="font-medium text-gray-100">Təhsil</span>
+                <span className="font-medium text-gray-900">Təhsil</span>
               </div>
               <div className="text-2xl font-bold text-green-400">{workflowState.linkedInProfile.education.length}</div>
               <div className="text-xs text-gray-400">dərəcə</div>
             </div>
             
-            <div className="p-4 bg-black/30 rounded-lg">
+            <div className="p-4 bg-white/90 border border-gray-100 rounded-lg shadow-soft">
               <div className="flex items-center mb-2">
                 <Award className="w-5 h-5 text-yellow-400 mr-2" />
-                <span className="font-medium text-gray-100">Bacarıqlar</span>
+                <span className="font-medium text-gray-900">Bacarıqlar</span>
               </div>
               <div className="text-2xl font-bold text-yellow-400">{workflowState.linkedInProfile.skills.length}</div>
               <div className="text-xs text-gray-400">texniki bacarıq</div>
@@ -279,15 +279,15 @@ export default function ResumeGenerator({ isActive, command }: ResumeGeneratorPr
           </div>
 
           {workflowState.extractedData.length > 0 && (
-            <div className="bg-black/30 p-4 rounded-lg">
-              <h4 className="font-semibold text-gray-100 mb-3">Real Vaxt Məlumat Çıxarılması</h4>
+            <div className="bg-white/90 border border-gray-100 p-4 rounded-lg shadow-soft">
+              <h4 className="font-semibold text-gray-900 mb-3">Real Vaxt Məlumat Çıxarılması</h4>
               <div className="space-y-1 max-h-32 overflow-y-auto">
                 {workflowState.extractedData.map((step, index) => (
                   <motion.div
                     key={index}
                     initial={{ opacity: 0, x: -10 }}
                     animate={{ opacity: 1, x: 0 }}
-                    className="text-sm text-gray-300 flex items-center"
+                    className="text-sm text-gray-700 flex items-center"
                   >
                     <CheckCircle className="w-3 h-3 text-green-400 mr-2" />
                     {step}
@@ -306,19 +306,19 @@ export default function ResumeGenerator({ isActive, command }: ResumeGeneratorPr
       ref={resumeGenerationRef}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className={`backdrop-blur-md bg-gray-800/60 p-6 mb-6 rounded-xl border transition-all duration-500 ${
+      className={`glass-card p-6 mb-6 rounded-xl border-2 border-gray-200 transition-all duration-500 shadow-soft hover:shadow-medium ${
         workflowState.currentStep === 3 || workflowState.currentStep === 4
-          ? 'border-cyber-pink/50 bg-gradient-to-br from-cyber-pink/10 to-transparent' 
-          : 'border-gray-600/30'
+          ? 'border-accent-400 shadow-glow-purple bg-gradient-to-br from-accent-50 to-transparent' 
+          : 'border-gray-200'
       }`}
     >
       <div className="flex items-center mb-4">
-        <FileText className="w-6 h-6 text-cyber-pink mr-2" />
-        <h3 className="text-xl font-bold text-cyber">TAPx CV Yaradılması</h3>
+        <FileText className="w-6 h-6 text-accent-500 mr-2" />
+        <h3 className="text-xl font-bold text-gray-900">TAPx CV Yaradılması</h3>
         {(workflowState.currentStep === 3 || workflowState.currentStep === 4) && (
           <div className="ml-auto">
             <div className="scanning-line"></div>
-            <Zap className="w-6 h-6 text-cyber-pink animate-pulse ml-2" />
+            <Zap className="w-6 h-6 text-accent-500 animate-pulse ml-2" />
           </div>
         )}
       </div>
@@ -332,37 +332,37 @@ export default function ResumeGenerator({ isActive, command }: ResumeGeneratorPr
             transition={{ delay: index * 0.2 }}
             className={`p-4 rounded-lg border text-center cursor-pointer transition-all duration-300 ${
               workflowState.selectedTemplate === template.id
-                ? 'border-cyber-pink bg-cyber-pink/20'
-                : 'border-gray-600/50 bg-black/30 hover:border-gray-500'
+                ? 'border-accent-400 bg-accent-50'
+                : 'border-gray-200 bg-white/90 border border-gray-100 hover:border-gray-300'
             }`}
             onClick={() => setWorkflowState(prev => ({ ...prev, selectedTemplate: template.id }))}
           >
             <div className="text-2xl mb-2">{template.icon}</div>
-            <div className="font-medium text-gray-100 text-sm">{template.name}</div>
+            <div className="font-medium text-gray-900 text-sm">{template.name}</div>
             <div className="text-xs text-gray-400 mt-1">{template.description}</div>
           </motion.div>
         ))}
       </div>
 
       {workflowState.currentStep >= 3 && (
-        <div className="bg-black/30 p-4 rounded-lg">
-          <h4 className="font-semibold text-gray-100 mb-3">TAPx Optimallaşdırma Prosesi</h4>
+        <div className="bg-white/90 border border-gray-100 p-4 rounded-lg shadow-soft">
+          <h4 className="font-semibold text-gray-900 mb-3">TAPx Optimallaşdırma Prosesi</h4>
           <div className="space-y-3">
             <div className="flex items-center">
               <TrendingUp className="w-4 h-4 text-green-400 mr-2" />
-              <span className="text-sm text-gray-300">Ölçülə bilən göstəricilər üçün nailiyyətlər analiz edilir</span>
+              <span className="text-sm text-gray-700">Ölçülə bilən göstəricilər üçün nailiyyətlər analiz edilir</span>
             </div>
             <div className="flex items-center">
               <Target className="w-4 h-4 text-blue-400 mr-2" />
-              <span className="text-sm text-gray-300">ATS uyğunluğu üçün açar sözlər optimallaşdırılır</span>
+              <span className="text-sm text-gray-700">ATS uyğunluğu üçün açar sözlər optimallaşdırılır</span>
             </div>
             <div className="flex items-center">
               <Star className="w-4 h-4 text-yellow-400 mr-2" />
-              <span className="text-sm text-gray-300">Texniki rəhbərlik təcrübəsi vurğulanır</span>
+              <span className="text-sm text-gray-700">Texniki rəhbərlik təcrübəsi vurğulanır</span>
             </div>
             <div className="flex items-center">
-              <Zap className="w-4 h-4 text-cyber-purple mr-2" />
-              <span className="text-sm text-gray-300">Təsirli peşəkar xülasə hazırlanır</span>
+              <Zap className="w-4 h-4 text-accent-600 mr-2" />
+              <span className="text-sm text-gray-700">Təsirli peşəkar xülasə hazırlanır</span>
             </div>
           </div>
         </div>
@@ -375,15 +375,15 @@ export default function ResumeGenerator({ isActive, command }: ResumeGeneratorPr
       ref={resultsRef}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className={`backdrop-blur-md bg-gray-800/60 p-6 rounded-xl border transition-all duration-500 ${
+      className={`glass-card p-6 rounded-xl border-2 border-gray-200 transition-all duration-500 shadow-soft hover:shadow-medium ${
         workflowState.currentStep === 5
-          ? 'border-green-400/50 bg-gradient-to-br from-green-400/10 to-transparent'
-          : 'border-gray-600/30'
+          ? 'border-success-400 shadow-glow-blue bg-gradient-to-br from-success-50 to-transparent'
+          : 'border-gray-200'
       }`}
     >
       <div className="flex items-center mb-4">
         <Download className="w-6 h-6 text-green-400 mr-2" />
-        <h3 className="text-xl font-bold text-cyber">Yaradılmış CV-lər</h3>
+        <h3 className="text-xl font-bold text-gray-900">Yaradılmış CV-lər</h3>
       </div>
       
       {workflowState.generatedResumes.length > 0 && (
@@ -409,7 +409,7 @@ export default function ResumeGenerator({ isActive, command }: ResumeGeneratorPr
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.2 }}
-              className="bg-black/40 border border-gray-600/50 rounded-lg p-6"
+              className="bg-white/90 border border-gray-100 rounded-lg p-6 shadow-soft"
             >
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center">
@@ -417,7 +417,7 @@ export default function ResumeGenerator({ isActive, command }: ResumeGeneratorPr
                     <FileText className="w-5 h-5 text-green-400" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-100">Texniki Fokuslu CV</h4>
+                    <h4 className="font-semibold text-gray-900">Texniki Fokuslu CV</h4>
                     <div className="text-sm text-gray-400">{resume.tailoredFor} üçün</div>
                   </div>
                 </div>
@@ -438,8 +438,8 @@ export default function ResumeGenerator({ isActive, command }: ResumeGeneratorPr
                 </div>
               </div>
 
-              <div className="bg-black/60 p-4 rounded-lg font-mono text-sm">
-                <div className="text-gray-300 leading-relaxed whitespace-pre-line max-h-40 overflow-y-auto">
+              <div className="bg-gray-50 border border-gray-200 p-4 rounded-lg font-mono text-sm">
+                <div className="text-gray-800 leading-relaxed whitespace-pre-line max-h-40 overflow-y-auto">
                   {resume.content.slice(0, 800)}...
                 </div>
               </div>
@@ -451,7 +451,7 @@ export default function ResumeGenerator({ isActive, command }: ResumeGeneratorPr
                     className={`px-2 py-1 text-xs rounded-full ${
                       section.aiOptimized 
                         ? 'bg-green-400/20 text-green-400 border border-green-400/30' 
-                        : 'bg-gray-600/20 text-gray-400 border border-gray-600/30'
+                        : 'bg-gray-50 text-gray-500 border border-gray-200'
                     }`}
                   >
                     {section.aiOptimized && '✨ '}{section.title}
@@ -476,8 +476,8 @@ export default function ResumeGenerator({ isActive, command }: ResumeGeneratorPr
   );
 
   const renderStepIndicator = () => (
-    <div className="backdrop-blur-md bg-gray-800/60 p-4 h-full rounded-xl border border-gray-600/30">
-      <h4 className="font-semibold mb-3 text-cyber">CV AI Prosesi</h4>
+    <div className="glass-card p-4 h-full rounded-xl border-2 border-gray-200 shadow-soft">
+      <h4 className="font-semibold mb-3 text-gray-900">CV AI Prosesi</h4>
       <div className="space-y-3">
         {steps.map((step, index) => (
           <motion.div
@@ -487,20 +487,20 @@ export default function ResumeGenerator({ isActive, command }: ResumeGeneratorPr
             transition={{ delay: index * 0.1 }}
             className={`flex items-start text-sm p-3 rounded-lg border transition-all duration-300 ${
               step.status === 'completed' ? 'text-green-400 bg-green-400/10 border-green-400/30' :
-              step.status === 'processing' ? 'text-cyber-blue bg-cyber-blue/10 border-cyber-blue/30 cyber-glow animate-pulse-glow' :
+              step.status === 'processing' ? 'text-primary-600 bg-primary-50 border-primary-300 shadow-glow-blue animate-pulse-glow' :
               'text-gray-500 border-gray-700'
             }`}
           >
             <div className="flex-shrink-0 mr-3 mt-0.5">
               {step.status === 'completed' && <CheckCircle className="w-5 h-5" />}
-              {step.status === 'processing' && <div className="w-5 h-5 border-2 border-cyber-blue border-t-transparent rounded-full animate-spin" />}
+              {step.status === 'processing' && <div className="w-5 h-5 border-2 border-primary-600 border-t-transparent rounded-full animate-spin" />}
               {step.status === 'pending' && <div className="w-5 h-5 border border-gray-500 rounded-full" />}
             </div>
             <div className="flex-1">
               <div className="font-medium mb-1">{step.title}</div>
               <div className="text-xs text-gray-400 leading-relaxed">{step.description}</div>
               {step.details && step.status === 'processing' && (
-                <div className="text-xs text-cyber-blue mt-1 italic">{step.details}</div>
+                <div className="text-xs text-primary-600 mt-1 italic">{step.details}</div>
               )}
             </div>
           </motion.div>
