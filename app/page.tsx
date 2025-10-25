@@ -60,8 +60,8 @@ export default function HomePage() {
         <div className="glass-card p-6">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-4xl font-bold text-gradient-animated mb-2">TAPx HR Köməkçisi</h1>
-              <p className="text-gray-600 text-lg">TAPx tərəfindən idarə olunan gələcək HR menecmenti</p>
+              <h1 className="text-5xl md:text-6xl font-semibold text-gradient-animated mb-3 tracking-tight text-shadow-lg">TAPx HR Köməkçisi</h1>
+              <p className="text-gray-600 text-xl md:text-2xl font-light">TAPx tərəfindən idarə olunan gələcək HR menecmenti</p>
               <div className="mt-3 inline-flex items-center px-4 py-2 bg-success-50 border border-success-200 rounded-full">
                 <span className="w-2 h-2 bg-success-500 rounded-full mr-2 animate-pulse"></span>
                 <span className="text-sm font-medium text-success-700">Lokal işləyir • Şirkət məlumatları təhlükəsizdir</span>
@@ -93,33 +93,33 @@ export default function HomePage() {
                   <div className="absolute inset-0 bg-primary-500/20 blur-3xl rounded-full"></div>
                   <Terminal className="w-24 h-24 text-primary-600 mx-auto relative animate-float" />
                 </div>
-                <h2 className="text-5xl font-bold mb-6 text-gradient-animated">TAPx, sizə necə kömək edə bilərəm...</h2>
-                <p className="text-gray-600 mb-10 text-xl leading-relaxed">
+                <h2 className="text-6xl md:text-7xl font-semibold mb-8 text-gradient-animated tracking-tight text-shadow-lg leading-tight">TAPx, sizə necə kömək edə bilərəm...</h2>
+                <p className="text-gray-600 mb-12 text-2xl md:text-3xl leading-relaxed font-light">
                   TAPx köməkçimizi fəaliyyətdə görmək üçün aşağıya komanda daxil edin. 
                   O, sizin sorğunuzu real vaxt vizuallaşdırmaları ilə şəffaf şəkildə emal etdiyi kimi izləyin.
                 </p>
-                <div className="mb-10 p-6 bg-gradient-to-r from-success-50 to-primary-50 border-2 border-success-200 rounded-2xl shadow-soft">
-                  <div className="flex items-center justify-center text-success-700 text-base">
-                    <span className="w-4 h-4 bg-success-500 rounded-full mr-3 animate-pulse"></span>
-                    <strong className="text-lg">100% Lokal İşləmə:</strong>
-                    <span className="ml-2 text-success-600">Bütün məlumatlar sizin serverinizdə qalır və heç vaxt xarici serverlərə göndərilmir</span>
+                <div className="mb-12 p-8 bg-gradient-to-r from-success-50 to-primary-50 border-2 border-success-200 rounded-3xl shadow-medium">
+                  <div className="flex items-center justify-center text-success-700 text-lg md:text-xl">
+                    <span className="w-5 h-5 bg-success-500 rounded-full mr-4 animate-pulse"></span>
+                    <strong className="text-xl md:text-2xl font-semibold">100% Lokal İşləmə:</strong>
+                    <span className="ml-3 text-success-600 font-light">Bütün məlumatlar sizin serverinizdə qalır və heç vaxt xarici serverlərə göndərilmir</span>
                   </div>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-base">
-                  <div className="glass-card p-8 glass-card-hover border-2 border-primary-200">
-                    <h3 className="font-bold bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent mb-4 text-xl">Bu komandaları cəhd edin:</h3>
-                    <ul className="text-left space-y-3 text-gray-700">
-                      <li className="flex items-center p-2 rounded-lg hover:bg-primary-50 transition-colors"><span className="text-primary-600 mr-3 text-lg">▶</span><span className="font-medium">"Leyla üçün maaş danışığı proqnozlaşdır"</span></li>
-                      <li className="flex items-center p-2 rounded-lg hover:bg-primary-50 transition-colors"><span className="text-primary-600 mr-3 text-lg">▶</span><span className="font-medium">"Elvin Quliyev üçün CV hazırla"</span></li>
-                      <li className="flex items-center p-2 rounded-lg hover:bg-primary-50 transition-colors"><span className="text-primary-600 mr-3 text-lg">▶</span><span className="font-medium">"komanda emosiyalarını görüşlərdən analiz et"</span></li>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-lg">
+                  <div className="glass-card p-10 glass-card-hover border-2 border-primary-200">
+                    <h3 className="font-semibold bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent mb-6 text-2xl md:text-3xl tracking-tight text-shadow-sm">Bu komandaları cəhd edin:</h3>
+                    <ul className="text-left space-y-4 text-gray-700">
+                      <li className="flex items-center p-3 rounded-xl hover:bg-primary-50 transition-all duration-300 cursor-pointer"><span className="text-primary-600 mr-4 text-2xl">▶</span><span className="font-medium text-lg md:text-xl">"Leyla üçün maaş danışığı proqnozlaşdır"</span></li>
+                      <li className="flex items-center p-3 rounded-xl hover:bg-primary-50 transition-all duration-300 cursor-pointer"><span className="text-primary-600 mr-4 text-2xl">▶</span><span className="font-medium text-lg md:text-xl">"Elvin Quliyev üçün CV hazırla"</span></li>
+                      <li className="flex items-center p-3 rounded-xl hover:bg-primary-50 transition-all duration-300 cursor-pointer"><span className="text-primary-600 mr-4 text-2xl">▶</span><span className="font-medium text-lg md:text-xl">"komanda emosiyalarını görüşlərdən analiz et"</span></li>
                     </ul>
                   </div>
-                  <div className="glass-card p-8 glass-card-hover border-2 border-accent-200">
-                    <h3 className="font-bold bg-gradient-to-r from-accent-600 to-accent-700 bg-clip-text text-transparent mb-4 text-xl">TAPx Xüsusiyyətlər:</h3>
-                    <ul className="text-left space-y-3 text-gray-700">
-                      <li className="flex items-center p-2 rounded-lg hover:bg-accent-50 transition-colors"><span className="text-accent-600 mr-3 text-lg">✦</span><span className="font-medium">Bazar kəşfiyyatı analizi</span></li>
-                      <li className="flex items-center p-2 rounded-lg hover:bg-accent-50 transition-colors"><span className="text-accent-600 mr-3 text-lg">✦</span><span className="font-medium">Rəqib təkliflərinin izlənməsi</span></li>
-                      <li className="flex items-center p-2 rounded-lg hover:bg-accent-50 transition-colors"><span className="text-accent-600 mr-3 text-lg">✦</span><span className="font-medium">Danışıq uğuru proqnozlaşdırması</span></li>
+                  <div className="glass-card p-10 glass-card-hover border-2 border-accent-200">
+                    <h3 className="font-semibold bg-gradient-to-r from-accent-600 to-accent-700 bg-clip-text text-transparent mb-6 text-2xl md:text-3xl tracking-tight text-shadow-sm">TAPx Xüsusiyyətlər:</h3>
+                    <ul className="text-left space-y-4 text-gray-700">
+                      <li className="flex items-center p-3 rounded-xl hover:bg-accent-50 transition-all duration-300 cursor-pointer"><span className="text-accent-600 mr-4 text-2xl">✦</span><span className="font-medium text-lg md:text-xl">Bazar kəşfiyyatı analizi</span></li>
+                      <li className="flex items-center p-3 rounded-xl hover:bg-accent-50 transition-all duration-300 cursor-pointer"><span className="text-accent-600 mr-4 text-2xl">✦</span><span className="font-medium text-lg md:text-xl">Rəqib təkliflərinin izlənməsi</span></li>
+                      <li className="flex items-center p-3 rounded-xl hover:bg-accent-50 transition-all duration-300 cursor-pointer"><span className="text-accent-600 mr-4 text-2xl">✦</span><span className="font-medium text-lg md:text-xl">Danışıq uğuru proqnozlaşdırması</span></li>
                     </ul>
                   </div>
                 </div>

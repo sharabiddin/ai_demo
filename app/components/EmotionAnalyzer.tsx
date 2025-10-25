@@ -74,14 +74,49 @@ export default function EmotionAnalyzer({ isActive, command }: EmotionAnalyzerPr
     }
   }, [isActive, command]);
 
+  // Auto-scroll to active card when currentStep changes
+  useEffect(() => {
+    if (!workflowState.isRunning) return;
+    
+    const timer = setTimeout(() => {
+      switch (workflowState.currentStep) {
+        case 0:
+          scrollToElement(platformsRef);
+          break;
+        case 1:
+        case 2:
+        case 3:
+          scrollToElement(videoAnalysisRef);
+          break;
+        case 4:
+          scrollToElement(emotionTimelineRef);
+          break;
+        case 5:
+          scrollToElement(insightsRef);
+          break;
+      }
+    }, 300);
+    
+    return () => clearTimeout(timer);
+  }, [workflowState.currentStep, workflowState.isRunning]);
+
   const scrollToElement = (ref: React.RefObject<HTMLDivElement>) => {
-    if (ref.current && mainContentRef.current) {
-      ref.current.scrollIntoView({ 
-        behavior: 'smooth', 
-        block: 'start',
-        inline: 'nearest'
-      });
-    }
+    if (!ref.current || !mainContentRef.current) return;
+    
+    const element = ref.current;
+    const container = mainContentRef.current;
+    
+    // Calculate element position relative to container
+    const containerRect = container.getBoundingClientRect();
+    const elementRect = element.getBoundingClientRect();
+    
+    const relativeTop = elementRect.top - containerRect.top;
+    const scrollOffset = container.scrollTop + relativeTop - 80;
+    
+    container.scrollTo({
+      top: Math.max(0, scrollOffset),
+      behavior: 'smooth'
+    });
   };
 
   const startEmotionAnalysis = async () => {
@@ -102,12 +137,10 @@ export default function EmotionAnalyzer({ isActive, command }: EmotionAnalyzerPr
 
     switch (stepIndex) {
       case 0: // Meeting Discovery
-        setTimeout(() => scrollToElement(platformsRef), 100);
         await simulateMeetingDiscovery();
         break;
       
       case 1: // Video Processing
-        setTimeout(() => scrollToElement(videoAnalysisRef), 100);
         await simulateVideoProcessing();
         break;
       
@@ -120,12 +153,10 @@ export default function EmotionAnalyzer({ isActive, command }: EmotionAnalyzerPr
         break;
       
       case 4: // Emotion Mapping
-        setTimeout(() => scrollToElement(emotionTimelineRef), 100);
         await simulateEmotionMapping();
         break;
       
       case 5: // Insights Generation
-        setTimeout(() => scrollToElement(insightsRef), 100);
         await generateInsights();
         break;
     }
@@ -178,7 +209,7 @@ export default function EmotionAnalyzer({ isActive, command }: EmotionAnalyzerPr
     setWorkflowState(prev => ({
       ...prev,
       insights: {
-        overallMood: 'Qarışıq - Ehtiyatlı Optimizm',
+        overallMood: 'Qənaətbəxş',
         stressLevel: 65,
         engagementScore: 82,
         riskAlerts: [
@@ -196,20 +227,40 @@ export default function EmotionAnalyzer({ isActive, command }: EmotionAnalyzerPr
     }));
   };
 
+  const getCardState = (stepIndex: number) => {
+    if (workflowState.currentStep === stepIndex) return 'active';
+    if (workflowState.currentStep > stepIndex) return 'completed';
+    return 'inactive';
+  };
+
+  const getCardClasses = (stepIndex: number) => {
+    const state = getCardState(stepIndex);
+    const baseClasses = 'glass-card p-8 rounded-3xl border-2 transition-all duration-1000 ease-out';
+    
+    if (state === 'active') {
+      return `${baseClasses} border-primary-500 shadow-glow-blue bg-gradient-to-br from-primary-50 to-white scale-100 opacity-100 z-20`;
+    } else if (state === 'completed') {
+      return `${baseClasses} border-gray-200 shadow-soft scale-90 opacity-40 -translate-y-4`;
+    } else {
+      return `${baseClasses} border-gray-200 shadow-soft scale-95 opacity-50 translate-y-4`;
+    }
+  };
+
   const renderPlatformConnection = () => (
     <motion.div
       ref={platformsRef}
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      className={`glass-card p-6 mb-6 rounded-xl border-2 border-gray-200 transition-all duration-500 shadow-soft hover:shadow-medium ${
-        workflowState.currentStep === 0 
-          ? 'border-primary-300 shadow-glow-blue bg-gradient-to-br from-primary-50 to-transparent' 
-          : 'border-gray-200'
-      }`}
+      initial={{ opacity: 0, scale: 0.9, y: 50 }}
+      animate={{ 
+        opacity: workflowState.currentStep >= 0 ? 1 : 0,
+        scale: workflowState.currentStep === 0 ? 1 : workflowState.currentStep > 0 ? 0.9 : 0.95,
+        y: workflowState.currentStep > 0 ? -20 : 0
+      }}
+      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+      className={getCardClasses(0)}
     >
-      <div className="flex items-center mb-4">
-        <Video className="w-6 h-6 text-primary-600 mr-2" />
-        <h3 className="text-xl font-bold text-gray-900">Görüş Platforması Qoşulması</h3>
+      <div className="flex items-center mb-6">
+        <Video className="w-8 h-8 text-primary-600 mr-3" />
+        <h3 className="text-2xl md:text-3xl font-semibold text-gray-900 tracking-tight text-shadow-sm">Görüş Platforması Qoşulması</h3>
       </div>
       
       <div className="grid grid-cols-3 gap-4">
@@ -247,21 +298,22 @@ export default function EmotionAnalyzer({ isActive, command }: EmotionAnalyzerPr
   const renderVideoAnalysis = () => (
     <motion.div
       ref={videoAnalysisRef}
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      className={`glass-card p-6 mb-6 rounded-xl border-2 transition-all duration-500 shadow-soft hover:shadow-medium ${
-        workflowState.currentStep === 1 || workflowState.currentStep === 2
-          ? 'border-accent-300 shadow-glow-purple bg-gradient-to-br from-accent-50 to-transparent' 
-          : 'border-gray-200'
-      }`}
+      initial={{ opacity: 0, scale: 0.9, y: 50 }}
+      animate={{ 
+        opacity: workflowState.currentStep >= 1 ? 1 : 0,
+        scale: (workflowState.currentStep >= 1 && workflowState.currentStep <= 3) ? 1 : workflowState.currentStep > 3 ? 0.9 : 0.95,
+        y: workflowState.currentStep > 3 ? -20 : 0
+      }}
+      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+      className={getCardClasses(workflowState.currentStep <= 3 ? 1 : 0)}
     >
-      <div className="flex items-center mb-4">
-        <Brain className="w-6 h-6 text-accent-600 mr-2" />
-        <h3 className="text-xl font-bold text-gray-900">TAPx Emosiya Atmlıması</h3>
+      <div className="flex items-center mb-6">
+        <Brain className="w-8 h-8 text-accent-600 mr-3" />
+        <h3 className="text-2xl md:text-3xl font-semibold text-gray-900 tracking-tight text-shadow-sm">TAPx Emosiya Atmlıması</h3>
         {(workflowState.currentStep === 1 || workflowState.currentStep === 2) && (
           <div className="ml-auto flex items-center">
             <div className="scanning-line"></div>
-            <Zap className="w-6 h-6 text-accent-600 animate-pulse ml-2" />
+            <Zap className="w-8 h-8 text-accent-600 animate-pulse ml-2" />
           </div>
         )}
       </div>
@@ -333,17 +385,18 @@ export default function EmotionAnalyzer({ isActive, command }: EmotionAnalyzerPr
   const renderEmotionTimeline = () => (
     <motion.div
       ref={emotionTimelineRef}
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      className={`glass-card p-6 mb-6 rounded-xl border-2 transition-all duration-500 shadow-soft hover:shadow-medium ${
-        workflowState.currentStep === 4
-          ? 'border-accent-400 shadow-glow-purple bg-gradient-to-br from-accent-50 to-transparent' 
-          : 'border-gray-200'
-      }`}
+      initial={{ opacity: 0, scale: 0.9, y: 50 }}
+      animate={{ 
+        opacity: workflowState.currentStep >= 4 ? 1 : 0,
+        scale: workflowState.currentStep === 4 ? 1 : workflowState.currentStep > 4 ? 0.9 : 0.95,
+        y: workflowState.currentStep > 4 ? -20 : 0
+      }}
+      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+      className={getCardClasses(4)}
     >
-      <div className="flex items-center mb-4">
-        <BarChart3 className="w-6 h-6 text-accent-600 mr-2" />
-        <h3 className="text-xl font-bold text-gray-900">Emosiya Zaman Xətti Analizi</h3>
+      <div className="flex items-center mb-6">
+        <BarChart3 className="w-8 h-8 text-accent-600 mr-3" />
+        <h3 className="text-2xl md:text-3xl font-semibold text-gray-900 tracking-tight text-shadow-sm">Emosiya Zaman Xətti Analizi</h3>
       </div>
       
       {workflowState.emotionTimeline.length > 0 && (
@@ -392,31 +445,32 @@ export default function EmotionAnalyzer({ isActive, command }: EmotionAnalyzerPr
   const renderInsights = () => (
     <motion.div
       ref={insightsRef}
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      className={`glass-card p-6 rounded-xl border-2 transition-all duration-500 shadow-soft hover:shadow-medium ${
-        workflowState.currentStep === 5
-          ? 'border-success-400 shadow-glow-green bg-gradient-to-br from-success-50 to-transparent'
-          : 'border-gray-200'
-      }`}
+      initial={{ opacity: 0, scale: 0.9, y: 50 }}
+      animate={{ 
+        opacity: workflowState.currentStep >= 5 ? 1 : 0,
+        scale: workflowState.currentStep === 5 ? 1 : 0.95,
+        y: 0
+      }}
+      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
+      className={getCardClasses(5)}
     >
-      <div className="flex items-center mb-4">
-        <Target className="w-6 h-6 text-success-600 mr-2" />
-        <h3 className="text-xl font-bold text-gray-900">AI Nəticələr və Tövsiyələr</h3>
+      <div className="flex items-center mb-6">
+        <Target className="w-8 h-8 text-success-600 mr-3" />
+        <h3 className="text-2xl md:text-3xl font-semibold text-gray-900 tracking-tight text-shadow-sm">AI Nəticələr və Tövsiyələr</h3>
       </div>
       
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-        <div className="text-center p-6 bg-success-50 rounded-xl border-2 border-success-200 shadow-soft">
-          <div className="text-2xl font-bold text-success-700">{workflowState.insights.overallMood}</div>
-          <div className="text-sm text-gray-600 font-medium mt-1">Komanda Əhval-Ruhiyyəsi</div>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div className="text-center p-8 bg-success-50 rounded-2xl border-2 border-success-200 shadow-medium hover:shadow-strong transition-all duration-500">
+          <div className="text-4xl md:text-5xl font-semibold text-success-700 mb-2 tracking-tight text-shadow">{workflowState.insights.overallMood}</div>
+          <div className="text-base md:text-lg text-gray-600 font-medium mt-2">Komanda Əhval-Ruhiyyəsi</div>
         </div>
-        <div className="text-center p-6 bg-red-50 rounded-xl border-2 border-red-200 shadow-soft">
-          <div className="text-2xl font-bold text-red-600">{workflowState.insights.stressLevel}%</div>
-          <div className="text-sm text-gray-600 font-medium mt-1">Stress Səviyyəsi</div>
+        <div className="text-center p-8 bg-red-50 rounded-2xl border-2 border-red-200 shadow-medium hover:shadow-strong transition-all duration-500">
+          <div className="text-4xl md:text-5xl font-semibold text-red-600 mb-2 tracking-tight text-shadow">{workflowState.insights.stressLevel}%</div>
+          <div className="text-base md:text-lg text-gray-600 font-medium mt-2">Stress Səviyyəsi</div>
         </div>
-        <div className="text-center p-6 bg-primary-50 rounded-xl border-2 border-primary-200 shadow-soft">
-          <div className="text-2xl font-bold text-primary-700">{workflowState.insights.engagementScore}%</div>
-          <div className="text-sm text-gray-600 font-medium mt-1">Engagement</div>
+        <div className="text-center p-8 bg-primary-50 rounded-2xl border-2 border-primary-200 shadow-medium hover:shadow-strong transition-all duration-500">
+          <div className="text-4xl md:text-5xl font-semibold text-primary-700 mb-2 tracking-tight text-shadow">{workflowState.insights.engagementScore}%</div>
+          <div className="text-base md:text-lg text-gray-600 font-medium mt-2">Engagement</div>
         </div>
       </div>
 
@@ -467,8 +521,8 @@ export default function EmotionAnalyzer({ isActive, command }: EmotionAnalyzerPr
   );
 
   const renderStepIndicator = () => (
-    <div className="glass-card p-6 h-full shadow-medium">
-      <h4 className="font-semibold mb-3 text-gradient">Emosiya AI Prosesi</h4>
+    <div className="glass-card p-8 h-full shadow-medium">
+      <h4 className="font-semibold mb-6 text-gradient text-xl md:text-2xl tracking-tight text-shadow-sm">Emosiya AI Prosesi</h4>
       <div className="space-y-3">
         {steps.map((step, index) => (
           <motion.div
@@ -503,22 +557,24 @@ export default function EmotionAnalyzer({ isActive, command }: EmotionAnalyzerPr
   if (!isActive) return null;
 
   return (
-    <div className="flex h-full min-h-0 gap-6 p-6">
+    <div className="flex h-full min-h-0 gap-6 p-6 overflow-hidden">
       {/* Main Content Area */}
-      <div ref={mainContentRef} className="flex-1 overflow-y-auto scroll-smooth">
-        <AnimatePresence>
-          {workflowState.isRunning && (
-            <>
-              {workflowState.currentStep >= 0 && renderPlatformConnection()}
-              
-              {workflowState.currentStep >= 1 && renderVideoAnalysis()}
-              
-              {workflowState.currentStep >= 4 && workflowState.emotionTimeline.length > 0 && renderEmotionTimeline()}
-              
-              {workflowState.currentStep >= 5 && renderInsights()}
-            </>
-          )}
-        </AnimatePresence>
+      <div ref={mainContentRef} className="flex-1 overflow-y-auto scroll-smooth relative pb-32">
+        <div className="space-y-6">
+          <AnimatePresence mode="sync">
+            {workflowState.isRunning && (
+              <>
+                {workflowState.currentStep >= 0 && renderPlatformConnection()}
+                
+                {workflowState.currentStep >= 1 && renderVideoAnalysis()}
+                
+                {workflowState.currentStep >= 4 && workflowState.emotionTimeline.length > 0 && renderEmotionTimeline()}
+                
+                {workflowState.currentStep >= 5 && renderInsights()}
+              </>
+            )}
+          </AnimatePresence>
+        </div>
       </div>
       
       {/* AI Process Sidebar */}

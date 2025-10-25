@@ -75,10 +75,14 @@ export default function SalaryNegotiationOracle({ isActive, command }: SalaryNeg
 
   const scrollToElement = (ref: React.RefObject<HTMLDivElement>) => {
     if (ref.current && mainContentRef.current) {
-      ref.current.scrollIntoView({ 
-        behavior: 'smooth', 
-        block: 'start',
-        inline: 'nearest'
+      const element = ref.current;
+      const container = mainContentRef.current;
+      const elementTop = element.offsetTop;
+      const offset = 20;
+      
+      container.scrollTo({
+        top: elementTop - offset,
+        behavior: 'smooth'
       });
     }
   };
