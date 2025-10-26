@@ -60,8 +60,8 @@ export default function HomePage() {
         <div className="glass-card p-6">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-5xl md:text-6xl font-semibold text-gradient-animated mb-3 tracking-tight text-shadow-lg">TAPx HR Köməkçisi</h1>
-              <p className="text-gray-600 text-xl md:text-2xl font-light">TAPx tərəfindən idarə olunan gələcək HR menecmenti</p>
+              <h1 className="text-5xl md:text-6xl font-semibold text-gradient-animated mb-3 tracking-tight text-shadow-lg">TAPx Daxili AI</h1>
+              <p className="text-gray-600 text-xl md:text-2xl font-light">TAPx - Soruş dəqiq cavabı tap</p>
               <div className="mt-3 inline-flex items-center px-4 py-2 bg-success-50 border border-success-200 rounded-full">
                 <span className="w-2 h-2 bg-success-500 rounded-full mr-2 animate-pulse"></span>
                 <span className="text-sm font-medium text-success-700">Lokal işləyir • Şirkət məlumatları təhlükəsizdir</span>
@@ -96,7 +96,7 @@ export default function HomePage() {
                 <h2 className="text-6xl md:text-7xl font-semibold mb-8 text-gradient-animated tracking-tight text-shadow-lg leading-tight">TAPx, sizə necə kömək edə bilərəm...</h2>
                 <p className="text-gray-600 mb-12 text-2xl md:text-3xl leading-relaxed font-light">
                   TAPx köməkçimizi fəaliyyətdə görmək üçün aşağıya komanda daxil edin. 
-                  O, sizin sorğunuzu real vaxt vizuallaşdırmaları ilə şəffaf şəkildə emal etdiyi kimi izləyin.
+                  Sorğunuzu real vaxt vizuallaşdırmaları demo data üzərində təqdim edəcək.
                 </p>
                 <div className="mb-12 p-8 bg-gradient-to-r from-success-50 to-primary-50 border-2 border-success-200 rounded-3xl shadow-medium">
                   <div className="flex items-center justify-center text-success-700 text-lg md:text-xl">
@@ -110,16 +110,16 @@ export default function HomePage() {
                     <h3 className="font-semibold bg-gradient-to-r from-primary-600 to-primary-700 bg-clip-text text-transparent mb-6 text-2xl md:text-3xl tracking-tight text-shadow-sm">Bu komandaları cəhd edin:</h3>
                     <ul className="text-left space-y-4 text-gray-700">
                       <li className="flex items-center p-3 rounded-xl hover:bg-primary-50 transition-all duration-300 cursor-pointer"><span className="text-primary-600 mr-4 text-2xl">▶</span><span className="font-medium text-lg md:text-xl">"Leyla üçün maaş danışığı proqnozlaşdır"</span></li>
-                      <li className="flex items-center p-3 rounded-xl hover:bg-primary-50 transition-all duration-300 cursor-pointer"><span className="text-primary-600 mr-4 text-2xl">▶</span><span className="font-medium text-lg md:text-xl">"Elvin Quliyev üçün CV hazırla"</span></li>
-                      <li className="flex items-center p-3 rounded-xl hover:bg-primary-50 transition-all duration-300 cursor-pointer"><span className="text-primary-600 mr-4 text-2xl">▶</span><span className="font-medium text-lg md:text-xl">"komanda emosiyalarını görüşlərdən analiz et"</span></li>
+                      <li className="flex items-center p-3 rounded-xl hover:bg-primary-50 transition-all duration-300 cursor-pointer"><span className="text-primary-600 mr-4 text-2xl">▶</span><span className="font-medium text-lg md:text-xl">"Mobile developer üçün vakansiya hazırla"</span></li>
+                      <li className="flex items-center p-3 rounded-xl hover:bg-primary-50 transition-all duration-300 cursor-pointer"><span className="text-primary-600 mr-4 text-2xl">▶</span><span className="font-medium text-lg md:text-xl">"2017-də bağladığımız müqavilə qiymətlərini ver"</span></li>
                     </ul>
                   </div>
                   <div className="glass-card p-10 glass-card-hover border-2 border-accent-200">
                     <h3 className="font-semibold bg-gradient-to-r from-accent-600 to-accent-700 bg-clip-text text-transparent mb-6 text-2xl md:text-3xl tracking-tight text-shadow-sm">TAPx Xüsusiyyətlər:</h3>
                     <ul className="text-left space-y-4 text-gray-700">
-                      <li className="flex items-center p-3 rounded-xl hover:bg-accent-50 transition-all duration-300 cursor-pointer"><span className="text-accent-600 mr-4 text-2xl">✦</span><span className="font-medium text-lg md:text-xl">Bazar kəşfiyyatı analizi</span></li>
-                      <li className="flex items-center p-3 rounded-xl hover:bg-accent-50 transition-all duration-300 cursor-pointer"><span className="text-accent-600 mr-4 text-2xl">✦</span><span className="font-medium text-lg md:text-xl">Rəqib təkliflərinin izlənməsi</span></li>
-                      <li className="flex items-center p-3 rounded-xl hover:bg-accent-50 transition-all duration-300 cursor-pointer"><span className="text-accent-600 mr-4 text-2xl">✦</span><span className="font-medium text-lg md:text-xl">Danışıq uğuru proqnozlaşdırması</span></li>
+                      <li className="flex items-center p-3 rounded-xl hover:bg-accent-50 transition-all duration-300 cursor-pointer"><span className="text-accent-600 mr-4 text-2xl">✦</span><span className="font-medium text-lg md:text-xl">Bütün daxili məlumatların analizi</span></li>
+                      <li className="flex items-center p-3 rounded-xl hover:bg-accent-50 transition-all duration-300 cursor-pointer"><span className="text-accent-600 mr-4 text-2xl">✦</span><span className="font-medium text-lg md:text-xl">Rəqib şirkətlərin izlənməsi</span></li>
+                      <li className="flex items-center p-3 rounded-xl hover:bg-accent-50 transition-all duration-300 cursor-pointer"><span className="text-accent-600 mr-4 text-2xl">✦</span><span className="font-medium text-lg md:text-xl">Bütün departamentlər üzrə düzgün məlumat analizi</span></li>
                     </ul>
                   </div>
                 </div>
@@ -171,7 +171,7 @@ export default function HomePage() {
                 type="text"
                 value={command}
                 onChange={(e) => setCommand(e.target.value)}
-                placeholder="TAPx HR komandanızı daxil edin..."
+                placeholder="TAPx komandı daxil edin..."
                 className="flex-1 bg-transparent outline-none text-gray-900 placeholder-gray-400 text-lg font-medium"
                 disabled={isProcessing}
               />
